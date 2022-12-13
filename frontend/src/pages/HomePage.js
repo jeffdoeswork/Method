@@ -30,8 +30,6 @@ const HomePage = () => {
     return (
         <div>
             <p>You are logged to the home page!</p>
-
-
             <ul>
                 {notes.map(note => (
                     <li key={note.id} >{note.body}</li>
