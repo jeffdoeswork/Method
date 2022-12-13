@@ -5,3 +5,13 @@ Python virtual env
 run backend server
     python3 manage.py runserver
     python3 manage.py makemigrations
+
+git
+    git branch *new-branch-name
+    git add .
+    git commit -m "*say something you did"
+    git push
+
+    git checkout master
+    git merge *new-branch-name
+    git branch -d *new-branch-name  (to delete)
