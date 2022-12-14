@@ -2,11 +2,11 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import PrivateRoute from './utils/PrivateRoute'
 import { AuthProvider } from './context/AuthContext'
-import Register from './context/Register';
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import Header from './components/Header'
 import RegisterPage from './pages/RegisterPage';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
   return (
