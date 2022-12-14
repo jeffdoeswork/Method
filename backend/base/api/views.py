@@ -7,7 +7,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-
 from .serializers import NoteSerializer, RegisterSerializer, UserSerializer
 from base.models import Note
 
@@ -34,10 +33,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         return token
 
-
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
-
 
 @api_view(['GET'])
 def getRoutes(request):
@@ -45,7 +42,6 @@ def getRoutes(request):
         '/api/token',
         '/api/token/refresh',
     ]
-
     return Response(routes)
 
 
