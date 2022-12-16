@@ -40,9 +40,10 @@ const HomePage = () => {
                 'title':e.target.title.value, 
                 'description':e.target.description.value
             })
+            
         })
+        e.target.reset();
         getTuts();
-        navigate('/')
     }
 
 
@@ -80,7 +81,7 @@ const HomePage = () => {
             <p>You are logged to the home page!</p>
 
             {/* <Form onSubmit={() => { getNotes(); makemovie();}}> */}
-            <Form onSubmit={makemovie}> 
+            <Form onSubmit={makemovie} > 
 
             <Form.Group className="mb-3" controlId="title">
                 <Form.Label>Movie title</Form.Label>
