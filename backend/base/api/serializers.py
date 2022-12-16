@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from base.models import Note, Observation
+from base.models import Note, Observation, Tutorial
 from rest_framework.permissions import IsAuthenticated
 from django.db import models
 from django.contrib.auth.models import User
@@ -34,3 +34,12 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+
+class TutorialSerializer(ModelSerializer):
+ 
+    class Meta:
+        model = Tutorial
+        fields = ('id',
+                  'title',
+                  'description',
+                  'published')
