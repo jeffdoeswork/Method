@@ -12,12 +12,22 @@ import Col from 'react-bootstrap/Col';
 const HomePage = () => {
     let [notes, setNotes] = useState([])
     let [tutorial, setTutorial] = useState([])
+    let [totalcount, setTotalCount] = useState([])
+
     let {authTokens, logoutUser} = useContext(AuthContext)
     const navigate = useNavigate();
+
+    let getCount = async() => {
+        let response2 = await fetch('http://127.0.0.1:8000/api/tutorials/total', {
+                method:'GET',})
+                let data2 = await response2.json()
+                setTotalCount(data2)
+    }
 
     useEffect(()=> {
         getNotes();
         getTuts();
+        getCount();
     }, [])
 
 
@@ -44,6 +54,7 @@ const HomePage = () => {
         })
         e.target.reset();
         getTuts();
+        getCount();
     }
 
 
@@ -79,6 +90,16 @@ const HomePage = () => {
     return (
         <div>
             <p>You are logged to the home page!</p>
+
+            <Container className="justify-content-md-center">
+                <Row>
+                    <Col></Col>
+                    <Col xs={6}>
+                        <h1> { totalcount } </h1>
+                    </Col>
+                    <Col></Col>
+                </Row>
+            </Container>
 
             {/* <Form onSubmit={() => { getNotes(); makemovie();}}> */}
             <Form onSubmit={makemovie} > 
