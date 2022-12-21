@@ -13,6 +13,7 @@ const HomePage = () => {
     let [notes, setNotes] = useState([])
     let [tutorial, setTutorial] = useState([])
     let [totalcount, setTotalCount] = useState([])
+    let [deletemovieid, setDeleteMovieID] = useState([])
 
     let {authTokens, logoutUser, user} = useContext(AuthContext)
     const navigate = useNavigate();
@@ -39,7 +40,20 @@ const HomePage = () => {
                 setTutorial(data2)
     }
 
-    let makemovie = async (e )=> {
+    let deletemovie = async (tut)=> {
+        // e.preventDefault()
+        console.log(tut.id)
+        let responsedel = await fetch('http://127.0.0.1:8000/api/tutorials/'+tut.id, { 
+            method: 'DELETE' })
+        getTuts();
+        getCount();
+    }
+
+    const handleDeleteMovie = (e) => {
+        setDeleteMovieID(e);
+    }
+
+    let makemovie = async (e)=> {
         e.preventDefault()
         let response = await fetch('http://127.0.0.1:8000/api/tutorials/', {
             method:'POST',
@@ -102,22 +116,24 @@ const HomePage = () => {
             {/* <Form onSubmit={() => { getNotes(); makemovie();}}> */}
             <Form onSubmit={makemovie} > 
 
-            <Form.Group className="mb-3" controlId="title">
-                <Form.Label>Movie title</Form.Label>
-                <Form.Control type="text" id="title"  name="title" placeholder="title" />
-            </Form.Group>
+            <Container>
+                <Form.Group className="mb-3" controlId="title">
+                    <Form.Label>Movie title</Form.Label>
+                    <Form.Control type="text" id="title"  name="title" placeholder="title" />
+                </Form.Group>
 
-            <Form.Group className="mb-3" controlId="description">
-                <Form.Label>Movie description</Form.Label>
-                <Form.Control type="text" id="description" name="description" placeholder="description" />
-            </Form.Group>
+                <Form.Group className="mb-3" controlId="description">
+                    <Form.Label>Movie description</Form.Label>
+                    <Form.Control type="text" id="description" name="description" placeholder="description" />
+                </Form.Group>
 
-            <Button variant="primary" type="submit">
-                Submit
-            </Button>
-
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+            </Container>
             </Form>
 
+         <Container>
             <ul>
                 {notes.map(note => (
                     <li key={note.id} >{note.body}</li>
@@ -127,8 +143,10 @@ const HomePage = () => {
                     <div key={tut.id} >
                        <h3> {tut.title}  </h3> 
                         <h4> {tut.description}  </h4>
+                        <Button variant="danger" onClick={() => deletemovie(tut)}>Delete</Button>
                     </div>
                 ))}
+            </Container>
         </div>
     )
 }
