@@ -65,7 +65,6 @@ const HomePage = () => {
             headers:{
                 'Content-Type':'application/json',
                 'Authorization':'Bearer ' + String(authTokens.access)
-                
             }
         })
 
@@ -130,8 +129,6 @@ const HomePage = () => {
                         <h4> {tut.description}  </h4>
                     </div>
                 ))}
-                {  }
-
         </div>
     )
 }
