@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path, include, re_path
 from . import views
 from .views import MyTokenObtainPairView, RegisterApi
 from .observation_views import requestObservations
@@ -19,6 +19,7 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     path('tutorials/', views.tutorial_list), 
+    path('tutorials/<int:pk>/', views.tutorial_detail, name='tutorial_detail'), 
     path('tutorials/total', views.tutorial_count),
 
 

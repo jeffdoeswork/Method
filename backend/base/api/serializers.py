@@ -40,6 +40,7 @@ class TutorialSerializer(ModelSerializer):
     class Meta:
         model = Tutorial
         fields = ('id',
+                  'user',
                   'title',
                   'description',
                   'published')

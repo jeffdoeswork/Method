@@ -14,7 +14,7 @@ const HomePage = () => {
     let [tutorial, setTutorial] = useState([])
     let [totalcount, setTotalCount] = useState([])
 
-    let {authTokens, logoutUser} = useContext(AuthContext)
+    let {authTokens, logoutUser, user} = useContext(AuthContext)
     const navigate = useNavigate();
 
     let getCount = async() => {
@@ -48,7 +48,8 @@ const HomePage = () => {
             },
             body:JSON.stringify({
                 'title':e.target.title.value, 
-                'description':e.target.description.value
+                'description':e.target.description.value,
+                'user':user.user_id
             })
             
         })
