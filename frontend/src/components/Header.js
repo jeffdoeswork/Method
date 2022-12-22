@@ -4,6 +4,7 @@ import AuthContext from '../context/AuthContext'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import './Header.css';
 
 const Header = () => {
     let {user, logoutUser} = useContext(AuthContext)
@@ -11,34 +12,36 @@ const Header = () => {
         <div>
 
             {user ? 
-            <Navbar bg="dark" variant="dark">
-                <Nav>
-                    <Nav.Item>
-                        <Nav.Link>
-                            <Link to="/">Home</Link> 
-                        </Nav.Link>
+                <Navbar>
+                    <Nav>
+                    <Nav.Item className="ml-auto">
+                        <Nav.Link className="link" ><Link className="link" to="/"><h4>Home</h4></Link>  </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link>
-                            <Link to="/logout">Logout</Link>
-                        </Nav.Link>
+                    <Nav.Item className="ml-auto">
+                        <Nav.Link className="link"> <Link className="link" to="/logout"><h4>Logout</h4></Link>  </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item>
-                       <Nav.Link> {user &&   <p>Hello {user.username}</p>} </Nav.Link> 
+                    <Nav.Item className="justify-content-end">
+                        <Nav.Link className="link"> {user && <h4>Hello {user.username}</h4>} </Nav.Link> 
+                    </Nav.Item>
+                    </Nav>
+                </Navbar>
+            : 
+            <Navbar>
+                <Nav className="container-fluid">
+                    <Nav.Item className="me-auto">
+                        <Nav.Link className="link"> <Link className="link" to="/"> <h4>Home</h4></Link> </Nav.Link>
                     </Nav.Item>
                 </Nav>
-            </Navbar>
-            : 
-            <Navbar bg="dark" variant="dark">
-                <Nav>
-                    <Nav.Item> 
-                        <Nav.Link> <Link to="/" >Home</Link> </Nav.Link>
-                    </Nav.Item>
+
+                <Nav className="me-auto">
                     <Nav.Item>
-                        <Nav.Link> <Link to="/login" >Login</Link> </Nav.Link>
+                        <Nav.Link className="link"> <Link className="link" to="/login"><h4>Login</h4></Link> </Nav.Link>
                     </Nav.Item>
+                </Nav>
+
+                <Nav className="ms-auto">
                     <Nav.Item>
-                        <Nav.Link> <Link to="/register"> Register</Link> </Nav.Link>
+                        <Nav.Link className="link"> <Link className="link" to="/register"> <h4> Register</h4> </Link> </Nav.Link>
                     </Nav.Item>
                 </Nav>
             </Navbar>

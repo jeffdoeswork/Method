@@ -1,0 +1,15 @@
+.linkText .nav-link .link .Link{ color: darkgray ; }
+
+.link {
+    text-decoration: none;
+    all: unset;
+    color: black;
+}
+
+.link:hover {
+    color: rgb(236, 238, 245);
+}
+
+.navbar {
+    background-color: rgb(75, 197, 96);
+  }
