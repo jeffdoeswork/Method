@@ -101,6 +101,8 @@ const HomePage = () => {
 
     return (
         <div>
+            { user ? 
+            <div>
             <p>You are logged to the home page!</p>
 
             <Container className="justify-content-md-center">
@@ -113,7 +115,6 @@ const HomePage = () => {
                 </Row>
             </Container>
 
-            {/* <Form onSubmit={() => { getNotes(); makemovie();}}> */}
             <Form onSubmit={makemovie} > 
 
             <Container>
@@ -147,6 +148,11 @@ const HomePage = () => {
                     </div>
                 ))}
             </Container>
+            </div>
+            :
+            <h3>You should login</h3>
+            }
+
         </div>
     )
 }
