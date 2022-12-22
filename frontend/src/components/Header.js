@@ -12,27 +12,35 @@ const Header = () => {
 
             {user ? 
             <Navbar bg="dark" variant="dark">
-                <Nav.Item> 
-                    <Link to="/" >Home</Link> 
-                </Nav.Item>
-                <Nav.Item> 
-                 <Link to="/logout">Logout</Link>
-                 </Nav.Item>
-                 <Nav.Item>
-                    {user &&   <p>Hello {user.username}</p>}
-                </Nav.Item>
+                <Nav>
+                    <Nav.Item>
+                        <Nav.Link>
+                            <Link to="/">Home</Link> 
+                        </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link>
+                            <Link to="/logout">Logout</Link>
+                        </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                       <Nav.Link> {user &&   <p>Hello {user.username}</p>} </Nav.Link> 
+                    </Nav.Item>
+                </Nav>
             </Navbar>
             : 
             <Navbar bg="dark" variant="dark">
-                <Nav.Item> 
-                    <Link to="/" >Home</Link> 
-                </Nav.Item>
-                <Nav.Item>
-                    <Link to="/login" >Login</Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Link to="/register"> Register</Link>
-                </Nav.Item>
+                <Nav>
+                    <Nav.Item> 
+                        <Nav.Link> <Link to="/" >Home</Link> </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link> <Link to="/login" >Login</Link> </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link> <Link to="/register"> Register</Link> </Nav.Link>
+                    </Nav.Item>
+                </Nav>
             </Navbar>
             }
 
