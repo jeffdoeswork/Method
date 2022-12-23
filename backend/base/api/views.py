@@ -7,8 +7,15 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from .serializers import NoteSerializer, RegisterSerializer, UserSerializer, TutorialSerializer
-from base.models import Note, Tutorial
+from .serializers import RegisterSerializer, UserSerializer, TutorialSerializer
+from base.models import Tutorial
+
+from django.shortcuts import render
+
+from django.http.response import JsonResponse
+from rest_framework.parsers import JSONParser 
+from rest_framework import status
+from rest_framework.decorators import api_view
 
 #Register API
 class RegisterApi(generics.GenericAPIView):
@@ -43,47 +50,6 @@ def getRoutes(request):
         '/api/token/refresh',
     ]
     return Response(routes)
-
-
-# @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
-# def getNotes(request):
-#     user = request.user
-#     notes = user.note_set.all()
-#     serializer = NoteSerializer(notes, many=True)
-#     return Response(serializer.data)
-
-# @api_view(['POST'])
-# @permission_classes([IsAuthenticated])
-# def getNotes(request):
-#     note = request.data
-#     notes = user.note_set.all()
-#     serializer = NoteSerializer(notes, many=True)
-#     return Response(serializer.data)
-
-@api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
-def getNotes(request):
-    if request.method == 'GET':
-        user = request.user
-        notes = user.note_set.all()
-        serializer = NoteSerializer(notes, many=True)
-        return Response(serializer.data)
-
-    elif request.method == 'POST':
-        serializer = NoteSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
-
-from django.shortcuts import render
-
-from django.http.response import JsonResponse
-from rest_framework.parsers import JSONParser 
-from rest_framework import status
-from rest_framework.decorators import api_view
-
 
 @api_view(['GET', 'POST', 'DELETE'])
 def tutorial_list(request):

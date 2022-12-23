@@ -1,20 +1,10 @@
 from rest_framework.serializers import ModelSerializer
-from base.models import Note, Observation, Tutorial
+from base.models import Tutorial
 from rest_framework.permissions import IsAuthenticated
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password
-
-class NoteSerializer(ModelSerializer):
-    class Meta:
-        model = Note
-        fields = '__all__'
-
-class ObservationSerializer(ModelSerializer):
-    class Meta:
-        model = Observation
-        fields = '__all__'
 
 # Register serializer
 class RegisterSerializer(ModelSerializer):

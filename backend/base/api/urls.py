@@ -1,7 +1,6 @@
 from django.urls import path, include, re_path
 from . import views
 from .views import MyTokenObtainPairView, RegisterApi
-from .observation_views import requestObservations
 
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
@@ -10,9 +9,6 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path('', views.getRoutes),
-    path('notes/', views.getNotes),
-    path('observation/', requestObservations),
-
     path('register', RegisterApi.as_view()),
 
     path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
