@@ -56,9 +56,9 @@ def tutorial_list(request):
     if request.method == 'GET':
         tutorials = Tutorial.objects.all()
         
-        title = request.GET.get('title', None)
-        if title is not None:
-            tutorials = tutorials.filter(title__icontains=title)
+        income = request.GET.get('income', None)
+        if income is not None:
+            tutorials = tutorials.filter(income__icontains=income)
         
         tutorials_serializer = TutorialSerializer(tutorials, many=True)
         return JsonResponse(tutorials_serializer.data, safe=False)
@@ -67,6 +67,7 @@ def tutorial_list(request):
     elif request.method == 'POST':
         tutorial_data = JSONParser().parse(request)
         tutorial_serializer = TutorialSerializer(data=tutorial_data)
+        print(tutorial_serializer)
         if tutorial_serializer.is_valid():
             tutorial_serializer.save()
             return JsonResponse(tutorial_serializer.data, status=status.HTTP_201_CREATED) 

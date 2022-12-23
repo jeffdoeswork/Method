@@ -31,6 +31,7 @@ class TutorialSerializer(ModelSerializer):
         model = Tutorial
         fields = ('id',
                   'user',
-                  'title',
+                  'income',
                   'description',
-                  'published')
+                  'validated',
+                  'plan')

@@ -6,7 +6,6 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-
 urlpatterns = [
     path('', views.getRoutes),
     path('register', RegisterApi.as_view()),
@@ -17,7 +16,5 @@ urlpatterns = [
     path('tutorials/', views.tutorial_list), 
     path('tutorials/<int:pk>/', views.tutorial_detail, name='tutorial_detail'), 
     path('tutorials/total', views.tutorial_count),
-
-
 
 ]

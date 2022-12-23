@@ -54,15 +54,17 @@ const HomePage = () => {
 
     let makemovie = async (e)=> {
         e.preventDefault()
+        console.log(e.target.plan.value)
         let response = await fetch('http://127.0.0.1:8000/api/tutorials/', {
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                'title':e.target.title.value, 
+                'income':e.target.income.value, 
                 'description':e.target.description.value,
-                'user':user.user_id
+                'user':user.user_id,
+                'plan':e.target.plan.value
             })
             
         })
@@ -75,7 +77,6 @@ const HomePage = () => {
         <div>
             { user ? 
             <div>
-            <p>You are logged to the home page!</p>
 
             <Container className="justify-content-md-center">
                 <Row>
@@ -90,16 +91,22 @@ const HomePage = () => {
             <Form onSubmit={makemovie} > 
 
             <Container>
-                <Form.Group className="mb-3" controlId="title">
-                    <Form.Label>Movie title</Form.Label>
-                    <Form.Control type="text" id="title"  name="title" placeholder="title" />
+                <Form.Group className="mb-3" controlId="income">
+                    <Form.Label>Yearly income</Form.Label>
+                    <Form.Control type="text" id="income"  name="income" placeholder="income" />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="description">
-                    <Form.Label>Movie description</Form.Label>
+                    <Form.Label>What do you want to see at Freedomistan? Keep it short plz! </Form.Label>
                     <Form.Control type="text" id="description" name="description" placeholder="description" />
                 </Form.Group>
-
+                <Form.Label>How much will you pay for Freedom? </Form.Label>
+                <Form.Select aria-label="Default select example" id="plan" name="plan" placeholder="plan">
+                    <option value="One Night">$100 One Night</option>
+                    <option value="Weekend">$500 Weekend</option>
+                    <option value="Invester">>$5,000 Founder</option>
+                </Form.Select>
+                <br></br>
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
@@ -114,7 +121,7 @@ const HomePage = () => {
             </ul>
                 {tutorial.map(tut => (
                     <div key={tut.id} >
-                       <h3> {tut.title}  </h3> 
+                       <h3> {tut.income}  </h3> 
                         <h4> {tut.description}  </h4>
                         <Button variant="danger" onClick={() => deletemovie(tut)}>Delete</Button>
                     </div>
