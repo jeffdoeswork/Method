@@ -17,7 +17,11 @@ const Header = () => {
                     <Nav.Item className="ml-auto">
                         <Nav.Link className="link" ><Link className="link" to="/"><h4>Home</h4></Link>  </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item className="justify-content-end">
+                    <Nav.Item className="me-auto">
+                        <Nav.Link className="link"> <Link className="link" to="/pledge"> <h4>Join</h4></Link> </Nav.Link>
+                    </Nav.Item>
+
+                    <Nav.Item className="me-auto">
                          {user && <h4>Hello {user.username}</h4>} 
                     </Nav.Item>
                     <Nav.Item className="ml-auto">

@@ -8,6 +8,7 @@ import Header from './components/Header'
 import RegisterPage from './pages/RegisterPage';
 import 'bootstrap/dist/css/bootstrap.css';
 import LogoutPage from './pages/LogoutPage'
+import Freedomistan from './pages/Freedomistan'
 
 function App() {
   return (
@@ -18,11 +19,11 @@ function App() {
           <Routes>
               <Route element={<PrivateRoute />}> 
                   <Route element={<HomePage />} path="/" exact/>
+                  <Route element={<Freedomistan />} path="/pledge" exact/>  
               </Route>
               <Route path="/login" element={<LoginPage />} /> 
               <Route path="/register" element={<RegisterPage />} />  
               <Route path="/logout" element={<LogoutPage />} />  
-
           </Routes>
         </AuthProvider>
       </Router>
