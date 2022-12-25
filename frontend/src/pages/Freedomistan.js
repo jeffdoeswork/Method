@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react'
 import AuthContext from '../context/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -10,11 +10,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const Freedomistan = () => {
+  const {id} = useParams();
   let [notes, setNotes] = useState([])
   let [tutorial, setTutorial] = useState([])
   let [totalcount, setTotalCount] = useState([])
   let [deletemovieid, setDeleteMovieID] = useState([])
-
   let {authTokens, logoutUser, user} = useContext(AuthContext)
   const navigate = useNavigate();
 
@@ -30,13 +30,13 @@ const Freedomistan = () => {
       getCount();
   }, [])
 
-
   let getTuts = async() => {
-      let response2 = await fetch('http://127.0.0.1:8000/api/tutorials/', {
-              method:'GET',})
+    console.log('THis is your ID: ',id)
+    let response2 = await fetch('http://127.0.0.1:8000/api/pledge/'+id, {
+        method:'GET',})
 
-              let data2 = await response2.json()
-              setTutorial(data2)
+        let data2 = await response2.json()
+        setTutorial(data2)
   }
 
   let deletemovie = async (tut)=> {

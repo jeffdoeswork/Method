@@ -14,5 +14,6 @@ git
 
     git checkout master
     git merge *new-branch-name
-    git branch -d *new-branch-name  (to delete)
     git push origin master
+    
+    git branch -d *new-branch-name  (to delete)

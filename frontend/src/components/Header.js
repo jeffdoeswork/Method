@@ -18,7 +18,7 @@ const Header = () => {
                         <Nav.Link className="link" ><Link className="link" to="/"><h4>Home</h4></Link>  </Nav.Link>
                     </Nav.Item>
                     <Nav.Item className="me-auto">
-                        <Nav.Link className="link"> <Link className="link" to="/pledge"> <h4>Join</h4></Link> </Nav.Link>
+                        <Nav.Link className="link"> <Link className="link" to={"/pledge/"+user.user_id}> <h4>Join</h4></Link> </Nav.Link>
                     </Nav.Item>
 
                     <Nav.Item className="me-auto">

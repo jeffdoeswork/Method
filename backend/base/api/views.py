@@ -111,6 +111,14 @@ def tutorial_list_published(request):
         return JsonResponse(tutorials_serializer.data, safe=False)
 
 @api_view(['GET'])
+def user_pledge(request, pk):
+    tutorials = Tutorial.objects.filter(user=pk)
+        
+    if request.method == 'GET': 
+        tutorials_serializer = TutorialSerializer(tutorials, many=True)
+        return JsonResponse(tutorials_serializer.data, safe=False)
+
+@api_view(['GET'])
 def tutorial_count(request):
     tutorials = Tutorial.objects.count()
     print(tutorials)

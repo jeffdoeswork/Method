@@ -14,6 +14,7 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     path('tutorials/', views.tutorial_list), 
+    path('pledge/<int:pk>/', views.user_pledge),
     path('tutorials/<int:pk>/', views.tutorial_detail, name='tutorial_detail'), 
     path('tutorials/total', views.tutorial_count),
 
