@@ -74,7 +74,8 @@ const Freedomistan = () => {
   }
   return (
     <div>
-
+{ user.user_id == id ?
+<div>
     <Container className="justify-content-md-center">
         <Row>
             <Col></Col>
@@ -124,6 +125,27 @@ const Freedomistan = () => {
             </div>
         ))}
     </Container>
+    </div>
+:
+
+<div>
+<Container>
+    <ul>
+        {notes.map(note => (
+            <li key={note.id} >{note.body}</li>
+        ))}
+    </ul>
+        {tutorial.map(tut => (
+            <div key={tut.id} >
+               <h3> {tut.income}  </h3> 
+                <h4> {tut.description}  </h4>
+            </div>
+        ))}
+    </Container>
+</div>
+
+
+}
     </div>
   )
 }
