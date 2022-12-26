@@ -38,14 +38,15 @@ const Freedomistan = () => {
         setTutorial(data2)
   }
 
+
   let deletemovie = async (tut)=> {
-      // e.preventDefault()
-      console.log(tut.id)
-      let responsedel = await fetch('http://127.0.0.1:8000/api/tutorials/'+tut.id, { 
-          method: 'DELETE' })
-      getTuts();
-      getCount();
-  }
+    // e.preventDefault()
+    console.log(tut.id)
+    let responsedel = await fetch('http://127.0.0.1:8000/api/tutorials/'+tut.id, { 
+        method: 'PUT' })
+    getTuts();
+    getCount();
+}
 
   const handleDeleteMovie = (e) => {
       setDeleteMovieID(e);
@@ -71,22 +72,28 @@ const Freedomistan = () => {
       getTuts();
       getCount();
   }
+
+  let editpledge = async (tut)=> {
+    console.log(tutorial[0].id)
+    console.log('LOOK HERE', tut.target.income.value, tut.target.description.value, tut.target.plan.value)
+    let response = await fetch('http://127.0.0.1:8000/api/tutorials/'+tutorial[0].id+"/", {
+        method:'PUT',
+        body:JSON.stringify({
+            'income':tut.target.income.value, 
+            'description':tut.target.description.value,
+            'plan':tut.target.plan.value
+        })
+        
+    })
+    getTuts();
+}
+
   return (
     <div>
 { user.user_id == id ?
 <div>
     { tutorial.length == 0 ?
     <div>
-    <Container className="justify-content-md-center w-75" fluid="md">
-            <Row>
-                <Col></Col>
-                <Col xs={6}>
-                    <h1> { totalcount } </h1>
-                </Col>
-                <Col></Col>
-            </Row>
-        </Container>
-
         <Form onSubmit={makemovie} > 
 
         <Container className="justify-content-md-center w-75" fluid="md">
@@ -113,16 +120,32 @@ const Freedomistan = () => {
         </Form>
     </div>
     :
-    <Container>
-            {tutorial.map(tut => (
-                <div key={tut.id} >
-                <h3> {tut.income}  </h3> 
-                    <h4> {tut.description}  </h4>
-                    <h4> {tut.plan}  </h4>
-                    <Button variant="danger" onClick={() => deletemovie(tut)}>Edit</Button>
-                </div>
-            ))}
-    </Container>
+    <div>
+    <Form onSubmit={editpledge} > 
+        <Container className="justify-content-md-center w-75" fluid="md">
+            <Form.Group className="mb-3" controlId="income">
+                <Form.Label>Twitter handle (or other social media handle/url)</Form.Label>
+                <Form.Control type="text" id="income"  name="income" placeholder={tutorial[0].income} />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="description">
+                <Form.Label>List things you want at Freedomistan! </Form.Label>
+                <Form.Control type="text" id="description" name="description" placeholder={tutorial[0].description} />
+            </Form.Group>
+            <Form.Label>How much will you pay for Freedom? </Form.Label>
+            <Form.Select aria-label="Default select example" id="plan" name="plan" placeholder="plan">
+                <option selected>{tutorial[0].plan}</option>
+                <option value="One Night">$100 One Night premium stay: Founders Membership </option>
+                <option value="Weekend">$500 Opening Weekend stay: VIP Membership</option>
+                <option value="Invester">>$5,000 Invester: Leadership Role</option>
+            </Form.Select>
+            <br></br>
+            <Button variant="success" type="submit">
+                Edit
+            </Button>
+        </Container>
+    </Form>
+    </div>
     }
     </div>
 

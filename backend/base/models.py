@@ -11,7 +11,7 @@ class Tutorial(models.Model):
         (Invester, ('Invester & Owner')),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, unique=True)
     income = models.CharField(max_length=70, blank=False, default='')
     description = models.CharField(max_length=200, blank=False, default='')
     validated = models.BooleanField(default=False)
