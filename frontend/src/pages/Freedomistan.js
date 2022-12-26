@@ -11,7 +11,6 @@ import Col from 'react-bootstrap/Col';
 
 const Freedomistan = () => {
   const {id} = useParams();
-  let [notes, setNotes] = useState([])
   let [tutorial, setTutorial] = useState([])
   let [totalcount, setTotalCount] = useState([])
   let [deletemovieid, setDeleteMovieID] = useState([])
@@ -76,65 +75,61 @@ const Freedomistan = () => {
     <div>
 { user.user_id == id ?
 <div>
-    <Container className="justify-content-md-center">
-        <Row>
-            <Col></Col>
-            <Col xs={6}>
-                <h1> { totalcount } </h1>
-            </Col>
-            <Col></Col>
-        </Row>
-    </Container>
+    { tutorial.length == 0 ?
+    <div>
+    <Container className="justify-content-md-center w-75" fluid="md">
+            <Row>
+                <Col></Col>
+                <Col xs={6}>
+                    <h1> { totalcount } </h1>
+                </Col>
+                <Col></Col>
+            </Row>
+        </Container>
 
-    <Form onSubmit={makemovie} > 
+        <Form onSubmit={makemovie} > 
 
-    <Container>
-        <Form.Group className="mb-3" controlId="income">
-            <Form.Label>Twitter handle (or other social media handle/url)</Form.Label>
-            <Form.Control type="text" id="income"  name="income" placeholder="Twitter handle" />
-        </Form.Group>
+        <Container className="justify-content-md-center w-75" fluid="md">
+            <Form.Group className="mb-3" controlId="income">
+                <Form.Label>Twitter handle (or other social media handle/url)</Form.Label>
+                <Form.Control type="text" id="income"  name="income" placeholder="Twitter handle" />
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="description">
-            <Form.Label>List things you want at Freedomistan! </Form.Label>
-            <Form.Control type="text" id="description" name="description" placeholder="rv park, gun range, thrift shop, etc." />
-        </Form.Group>
-        <Form.Label>How much will you pay for Freedom? </Form.Label>
-        <Form.Select aria-label="Default select example" id="plan" name="plan" placeholder="plan">
-            <option value="One Night">$100 One Night premium stay: Founders Membership </option>
-            <option value="Weekend">$500 Opening Weekend stay: VIP Membership</option>
-            <option value="Invester">>$5,000 Invester: Leadership Role</option>
-        </Form.Select>
-        <br></br>
-        <Button variant="primary" type="submit">
-            Submit
-        </Button>
-    </Container>
-    </Form>
-
- <Container>
-    <ul>
-        {notes.map(note => (
-            <li key={note.id} >{note.body}</li>
-        ))}
-    </ul>
-        {tutorial.map(tut => (
-            <div key={tut.id} >
-               <h3> {tut.income}  </h3> 
-                <h4> {tut.description}  </h4>
-                <Button variant="danger" onClick={() => deletemovie(tut)}>Delete</Button>
-            </div>
-        ))}
-    </Container>
+            <Form.Group className="mb-3" controlId="description">
+                <Form.Label>List things you want at Freedomistan! </Form.Label>
+                <Form.Control type="text" id="description" name="description" placeholder="rv park, gun range, thrift shop, etc." />
+            </Form.Group>
+            <Form.Label>How much will you pay for Freedom? </Form.Label>
+            <Form.Select aria-label="Default select example" id="plan" name="plan" placeholder="plan">
+                <option value="One Night">$100 One Night premium stay: Founders Membership </option>
+                <option value="Weekend">$500 Opening Weekend stay: VIP Membership</option>
+                <option value="Invester">>$5,000 Invester: Leadership Role</option>
+            </Form.Select>
+            <br></br>
+            <Button variant="primary" type="submit">
+                Submit
+            </Button>
+        </Container>
+        </Form>
     </div>
+    :
+    <Container>
+            {tutorial.map(tut => (
+                <div key={tut.id} >
+                <h3> {tut.income}  </h3> 
+                    <h4> {tut.description}  </h4>
+                    <h4> {tut.plan}  </h4>
+                    <Button variant="danger" onClick={() => deletemovie(tut)}>Edit</Button>
+                </div>
+            ))}
+    </Container>
+    }
+    </div>
+
 :
 
 <div>
 <Container>
-    <ul>
-        {notes.map(note => (
-            <li key={note.id} >{note.body}</li>
-        ))}
-    </ul>
         {tutorial.map(tut => (
             <div key={tut.id} >
                <h3> {tut.income}  </h3> 

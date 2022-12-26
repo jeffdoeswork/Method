@@ -38,12 +38,9 @@ const RegisterPage = () => {
     return (
         <div>
 
-            <Container className="justify-content-md-center">
-            <Row>
-            <Col></Col>
-                <Col xs={6}>
-                    <Form onSubmit={registerUser}>
-
+            <Container className="justify-content-md-center w-75" fluid="md">
+                <Form onSubmit={registerUser}>
+                <Container>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Username</Form.Label>
                         <Form.Control type="text" name="username" placeholder="Username" />
@@ -72,11 +69,8 @@ const RegisterPage = () => {
                     <Button variant="primary" type="submit">
                         Submit
                     </Button>
-
-                    </Form>
-                </Col>
-            <Col></Col>
-            </Row>
+                </Container>
+                </Form>
             </Container>
         </div>
     )
