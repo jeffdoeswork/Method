@@ -17,7 +17,7 @@ const Freedomistan = () => {
   let {authTokens, logoutUser, user} = useContext(AuthContext)
   let [socialedit, setSocialEdit] = useState([])
   let [descriptionedit, setDescriptionEdit] = useState([])
-  let [planedit, setPlanEdit] = useState([])
+  let [planedit, setPlanEdit] = useState("One Night")
 
   const navigate = useNavigate();
 
@@ -27,8 +27,8 @@ const Freedomistan = () => {
   const handelDescription = (e) => {
     setDescriptionEdit(e.target.value)
   }
-  const handelPlan = (e) => {
-    setPlanEdit(e.target.value)
+  const handelPlan = (event) => {
+    setPlanEdit(event.target.value)
   }
 
   useEffect(()=> {
@@ -62,29 +62,21 @@ const Freedomistan = () => {
 
   let makemovie = async (e)=> {
       e.preventDefault()
-      console.log(e.target.plan.value)
       let response = await fetch('http://127.0.0.1:8000/api/tutorials/', {
           method:'POST',
           headers:{
               'Content-Type':'application/json'
           },
           body:JSON.stringify({
-              'income':e.target.income.value, 
-              'description':e.target.description.value,
+              'income':socialedit, 
+              'description':descriptionedit,
               'user':user.user_id,
-              'plan':e.target.plan.value
+              'plan':planedit
           })
           
       })
-      e.target.reset();
-      getTuts();
+      navigate('/', {replace: true});
   }
-
-  const senduser = event => {
-    event.preventDefault();
-    navigate('/', {replace: true});
-  };
-
 
   let editpledge = async (tut)=> {
     let response = await fetch('http://127.0.0.1:8000/api/tutorials/'+tutorial[0].id+"/", {
@@ -94,7 +86,6 @@ const Freedomistan = () => {
             'description':descriptionedit,
             'plan':planedit
         })
-        
     })
     navigate('/', {replace: true});
 }
@@ -106,26 +97,26 @@ const Freedomistan = () => {
 <div>
     { tutorial.length == 0 ?
     <div>
-        <Form onSubmit={makemovie} > 
-
+        <Form> 
         <Container className="justify-content-md-center w-75" fluid="md">
             <Form.Group className="mb-3" controlId="income">
                 <Form.Label>Twitter handle (or other social media handle/url)</Form.Label>
-                <Form.Control type="text" id="income"  name="income" placeholder="Twitter handle" />
+                <Form.Control type="text" id="income" name="income" onChange={(e) => handelSocial(e, "income")} placeholder="Twitter handle" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="description">
                 <Form.Label>List things you want at Freedomistan! </Form.Label>
-                <Form.Control type="text" id="description" name="description" placeholder="rv park, gun range, thrift shop, etc." />
+                <Form.Control type="text" id="description" name="description" onChange={(e) => handelDescription(e, "description")} placeholder="rv park, gun range, thrift shop, etc." />
             </Form.Group>
             <Form.Label>How much will you pay for Freedom? </Form.Label>
-            <Form.Select aria-label="Default select example" id="plan" name="plan" placeholder="plan">
+            <Form.Select aria-label="Default select example" id="plan" name="plan" placeholder="plan" onChange={(e) => handelPlan(e, "plan")}>
+                <option selected>{"One Night"}</option>
                 <option value="One Night">$100 One Night premium stay: Founders Membership </option>
                 <option value="Weekend">$500 Opening Weekend stay: VIP Membership</option>
                 <option value="Invester">>$5,000 Invester: Leadership Role</option>
             </Form.Select>
             <br></br>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" onClick={makemovie}>
                 Submit
             </Button>
         </Container>
@@ -145,7 +136,7 @@ const Freedomistan = () => {
                 <Form.Control type="text" id="description" name="description" onChange={(e) => handelDescription(e, "description")} placeholder={descriptionedit} />
             </Form.Group>
             <Form.Label>How much will you pay for Freedom? </Form.Label>
-            <Form.Select aria-label="Default select example" onChange={(e) => handelPlan(e, "plan")} id="plan" name="plan" placeholder="plan">
+            <Form.Select aria-label="Default select example"  id="plan" name="plan" placeholder="plan" onChange={(event) => handelPlan(event, "plan")}>
                 <option selected>{planedit}</option>
                 <option value="One Night">$100 One Night premium stay: Founders Membership </option>
                 <option value="Weekend">$500 Opening Weekend stay: VIP Membership</option>

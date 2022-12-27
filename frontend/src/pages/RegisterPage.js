@@ -29,7 +29,7 @@ const RegisterPage = () => {
         let data = await response.json()
 
         if(response.status === 200){
-            navigate('/')
+            navigate('/login')
         }else{
             alert('Something went wrong!')
         }
