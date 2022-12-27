@@ -15,7 +15,21 @@ const Freedomistan = () => {
   let [totalcount, setTotalCount] = useState([])
   let [deletemovieid, setDeleteMovieID] = useState([])
   let {authTokens, logoutUser, user} = useContext(AuthContext)
+  let [socialedit, setSocialEdit] = useState([])
+  let [descriptionedit, setDescriptionEdit] = useState([])
+  let [planedit, setPlanEdit] = useState([])
+
   const navigate = useNavigate();
+
+  const handelSocial = (e) => {
+    setSocialEdit(e.target.value)
+  }
+  const handelDescription = (e) => {
+    setDescriptionEdit(e.target.value)
+  }
+  const handelPlan = (e) => {
+    setPlanEdit(e.target.value)
+  }
 
   useEffect(()=> {
       getTuts();
@@ -28,6 +42,9 @@ const Freedomistan = () => {
 
         let data2 = await response2.json()
         setTutorial(data2)
+        setSocialEdit(data2[0].income)
+        setDescriptionEdit(data2[0].description)
+        setPlanEdit(data2[0].plan)
   }
 
 
@@ -70,17 +87,16 @@ const Freedomistan = () => {
 
 
   let editpledge = async (tut)=> {
-    console.log(tutorial[0].id)
-    console.log('LOOK HERE', tut.target.income.value, tut.target.description.value, tut.target.plan.value)
     let response = await fetch('http://127.0.0.1:8000/api/tutorials/'+tutorial[0].id+"/", {
         method:'PUT',
         body:JSON.stringify({
-            'income':tut.target.income.value, 
-            'description':tut.target.description.value,
-            'plan':tut.target.plan.value
+            'income':socialedit, 
+            'description':descriptionedit,
+            'plan':planedit
         })
         
     })
+    navigate('/', {replace: true});
 }
 
 
@@ -117,32 +133,32 @@ const Freedomistan = () => {
     </div>
     :
     <div>
-    <Form onSubmit={editpledge} > 
-        <Container className="justify-content-md-center w-75" fluid="md">
+    <Container className="justify-content-md-center w-75" fluid="md">
+        <Form> 
             <Form.Group className="mb-3" controlId="income">
                 <Form.Label>Twitter handle (or other social media handle/url)</Form.Label>
-                <Form.Control type="text" id="income"  name="income" placeholder={tutorial[0].income} />
+                <Form.Control type="text" id="income" name="income" onChange={(e) => handelSocial(e, "income")} placeholder={socialedit}/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="description">
                 <Form.Label>List things you want at Freedomistan! </Form.Label>
-                <Form.Control type="text" id="description" name="description" placeholder={tutorial[0].description} />
+                <Form.Control type="text" id="description" name="description" onChange={(e) => handelDescription(e, "description")} placeholder={descriptionedit} />
             </Form.Group>
             <Form.Label>How much will you pay for Freedom? </Form.Label>
-            <Form.Select aria-label="Default select example" id="plan" name="plan" placeholder="plan">
-                <option selected>{tutorial[0].plan}</option>
+            <Form.Select aria-label="Default select example" onChange={(e) => handelPlan(e, "plan")} id="plan" name="plan" placeholder="plan">
+                <option selected>{planedit}</option>
                 <option value="One Night">$100 One Night premium stay: Founders Membership </option>
                 <option value="Weekend">$500 Opening Weekend stay: VIP Membership</option>
                 <option value="Invester">>$5,000 Invester: Leadership Role</option>
             </Form.Select>
             <br></br>
-            <div>
-                <Button variant="success" type="submit">
-                    Edit
-                </Button>
-            </div>
-        </Container>
-    </Form>
+        <Button variant="success" onClick={editpledge}>
+            Edit
+        </Button>
+        </Form>
+
+    </Container>
+
     </div>
     }
     </div>
