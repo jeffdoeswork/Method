@@ -17,16 +17,8 @@ const Freedomistan = () => {
   let {authTokens, logoutUser, user} = useContext(AuthContext)
   const navigate = useNavigate();
 
-  let getCount = async() => {
-      let response2 = await fetch('http://127.0.0.1:8000/api/tutorials/total', {
-              method:'GET',})
-              let data2 = await response2.json()
-              setTotalCount(data2)
-  }
-
   useEffect(()=> {
       getTuts();
-      getCount();
   }, [])
 
   let getTuts = async() => {
@@ -45,7 +37,6 @@ const Freedomistan = () => {
     let responsedel = await fetch('http://127.0.0.1:8000/api/tutorials/'+tut.id, { 
         method: 'PUT' })
     getTuts();
-    getCount();
 }
 
   const handleDeleteMovie = (e) => {
@@ -70,8 +61,13 @@ const Freedomistan = () => {
       })
       e.target.reset();
       getTuts();
-      getCount();
   }
+
+  const senduser = event => {
+    event.preventDefault();
+    navigate('/', {replace: true});
+  };
+
 
   let editpledge = async (tut)=> {
     console.log(tutorial[0].id)
@@ -85,8 +81,8 @@ const Freedomistan = () => {
         })
         
     })
-    getTuts();
 }
+
 
   return (
     <div>
@@ -140,9 +136,11 @@ const Freedomistan = () => {
                 <option value="Invester">>$5,000 Invester: Leadership Role</option>
             </Form.Select>
             <br></br>
-            <Button variant="success" type="submit">
-                Edit
-            </Button>
+            <div>
+                <Button variant="success" type="submit">
+                    Edit
+                </Button>
+            </div>
         </Container>
     </Form>
     </div>

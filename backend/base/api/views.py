@@ -120,8 +120,9 @@ def user_pledge(request, pk):
 
 @api_view(['GET'])
 def tutorial_count(request):
-    tutorials = Tutorial.objects.count()
-    print(tutorials)
+    one_night = Tutorial.objects.filter(plan='One Night').count()
+    weekend = Tutorial.objects.filter(plan='Weekend').count()
+    invester = Tutorial.objects.filter(plan='Invester').count()
+    progress = ((one_night*100) + (weekend * 500) + (invester * 5000))
     if request.method == 'GET': 
-        # tutorials_serializer = TutorialSerializer(tutorials)
-        return JsonResponse(tutorials, safe=False)
+        return JsonResponse(progress, safe=False)

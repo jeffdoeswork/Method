@@ -17,13 +17,13 @@ function App() {
         <AuthProvider>
           <Header/>
           <Routes>
-              <Route element={<PrivateRoute />}> 
-                  <Route element={<HomePage />} path="/" exact/>
-                  <Route element={<Freedomistan />} path="/pledge/:id" />  
-              </Route>
-              <Route path="/login" element={<LoginPage />} /> 
-              <Route path="/register" element={<RegisterPage />} />  
-              <Route path="/logout" element={<LogoutPage />} />  
+            <Route element={<HomePage />} path="/" exact/>
+            <Route element={<PrivateRoute />}> 
+               <Route element={<Freedomistan />} path="/pledge/:id" />  
+            </Route>
+            <Route path="/login" element={<LoginPage />} /> 
+            <Route path="/register" element={<RegisterPage />} />  
+            <Route path="/logout" element={<LogoutPage />} />  
           </Routes>
         </AuthProvider>
       </Router>
