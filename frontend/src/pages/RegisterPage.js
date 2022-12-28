@@ -12,26 +12,33 @@ const RegisterPage = () => {
     const navigate = useNavigate();
 
     let registerUser = async (e )=> {
-        e.preventDefault()
-        let response = await fetch('http://127.0.0.1:8000/api/register', {
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify({
-                'username':e.target.username.value, 
-                'password':e.target.password.value,
-                'first_name':e.target.first_name.value, 
-                'last_name':e.target.last_name.value,
-                'email':e.target.email.value
-            })
-        })
-        let data = await response.json()
 
-        if(response.status === 200){
-            navigate('/login')
-        }else{
-            alert('Something went wrong!')
+        if (e.target.password.value == e.target.passwordconfirm.value) {
+            e.preventDefault()
+            let response = await fetch('http://127.0.0.1:8000/api/register', {
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    'username':e.target.username.value, 
+                    'password':e.target.password.value,
+                    'first_name':e.target.first_name.value, 
+                    'last_name':e.target.last_name.value,
+                    'email':e.target.email.value
+                })
+            })
+            let data = await response.json()
+
+            if(response.status === 200){
+                navigate('/login')
+            }else{
+                alert('Something went wrong! Maybe try another username')
+            }
+
+        } else {
+            e.preventDefault()
+            alert("Your passwords don't match")
         }
     }
 
@@ -49,6 +56,10 @@ const RegisterPage = () => {
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" name="password" placeholder="Password" />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" name="passwordconfirm" placeholder="Confirm Password" />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
