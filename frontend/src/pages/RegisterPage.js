@@ -49,31 +49,31 @@ const RegisterPage = () => {
                 <Form onSubmit={registerUser}>
                 <Container>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Username</Form.Label>
+                        <Form.Label style={{ fontWeight: 'bold', color: 'white' }}>Username</Form.Label>
                         <Form.Control type="text" name="username" placeholder="Username" />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label style={{ fontWeight: 'bold', color: 'white' }}>Password</Form.Label>
                         <Form.Control type="password" name="password" placeholder="Password" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label style={{ fontWeight: 'bold', color: 'white' }}>Password</Form.Label>
                         <Form.Control type="password" name="passwordconfirm" placeholder="Confirm Password" />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
+                        <Form.Label style={{ fontWeight: 'bold', color: 'white' }}>Email address</Form.Label>
                         <Form.Control type="email" name="email" placeholder="Enter email" />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Firstname</Form.Label>
+                        <Form.Label style={{ fontWeight: 'bold', color: 'white' }}>Firstname</Form.Label>
                         <Form.Control type="text" name="first_name" placeholder="Enter firstname" />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Lastname</Form.Label>
+                        <Form.Label style={{ fontWeight: 'bold', color: 'white' }}>Lastname</Form.Label>
                         <Form.Control type="text" name="last_name" placeholder="Enter lastname" />
                     </Form.Group>
 

@@ -12,11 +12,11 @@ const LoginPage = () => {
                 
                 <Form onSubmit={loginUser}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Username</Form.Label>
+                        <Form.Label style={{ fontWeight: 'bold', color: 'white' }} >Username</Form.Label>
                         <Form.Control type="text" name="username" placeholder="Enter Username" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label style={{ fontWeight: 'bold', color: 'white' }}>Password</Form.Label>
                         <Form.Control type="password" name="password" placeholder="Enter Password" />
                     </Form.Group>
                     <Button variant="primary" type="submit">

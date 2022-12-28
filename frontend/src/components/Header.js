@@ -11,46 +11,48 @@ const Header = () => {
     return (
         <div>
 
-            {user ? 
-                <Navbar>
-                    <Nav className="container-fluid ">
-                    <Nav.Item className="ml-auto">
-                        <Nav.Link className="link" ><Link className="link" to="/"><h4>Home</h4></Link>  </Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item className="me-auto">
-                        <Nav.Link className="link"> <Link className="link" to={"/pledge/"+user.user_id}> <h4>Join</h4></Link> </Nav.Link>
-                    </Nav.Item>
-
-                    <Nav.Item className="me-auto">
-                         {user && <h4>Hello {user.username}</h4>} 
-                    </Nav.Item>
-                    <Nav.Item className="ml-auto">
-                        <Nav.Link className="link"> <Link className="link" to="/logout"><h4>Logout</h4></Link>  </Nav.Link>
-                    </Nav.Item>
-
-                    </Nav>
-                </Navbar>
-            : 
+        {user ? 
             <Navbar>
                 <Nav className="container-fluid ">
-                    <Nav.Item className="me-auto">
-                        <Nav.Link className="link"> <Link className="link" to="/"> <h4>Home</h4></Link> </Nav.Link>
-                    </Nav.Item>
-                </Nav>
+                <Nav.Item className="ml-auto">
+                    <Nav.Link className="link" ><Link className="link" to="/"><h4>Home</h4></Link>  </Nav.Link>
+                </Nav.Item>
+                        
 
-                <Nav className="me-auto">
-                    <Nav.Item>
-                        <Nav.Link className="link"> <Link className="link" to="/login"><h4>Login</h4></Link> </Nav.Link>
-                    </Nav.Item>
-                </Nav>
+                <Nav.Item className="me-auto">
+                    <Nav.Link className="link"> <Link className="link" to={"/pledge/"+user.user_id}> <h4>Join</h4></Link> </Nav.Link>
+                </Nav.Item>
 
-                <Nav className="ms-auto">
-                    <Nav.Item>
-                        <Nav.Link className="link"> <Link className="link" to="/register"> <h4> Register</h4> </Link> </Nav.Link>
-                    </Nav.Item>
+                <Nav.Item className="me-auto">
+                        {user && <h4>Hello {user.username}</h4>} 
+                </Nav.Item>
+                <Nav.Item className="ml-auto">
+                    <Nav.Link className="link"> <Link className="link" to="/logout"><h4>Logout</h4></Link>  </Nav.Link>
+                </Nav.Item>
+
                 </Nav>
             </Navbar>
-            }
+        : 
+        <Navbar>
+            <Nav className="container-fluid ">
+                <Nav.Item className="me-auto">
+                    <Nav.Link className="link"> <Link className="link" to="/"> <h4>Home</h4></Link> </Nav.Link>
+                </Nav.Item>
+            </Nav>
+
+            <Nav className="me-auto">
+                <Nav.Item>
+                    <Nav.Link className="link"> <Link className="link" to="/login"><h4>Login</h4></Link> </Nav.Link>
+                </Nav.Item>
+            </Nav>
+
+            <Nav className="ms-auto">
+                <Nav.Item>
+                    <Nav.Link className="link"> <Link className="link" to="/register"> <h4> Register</h4> </Link> </Nav.Link>
+                </Nav.Item>
+            </Nav>
+        </Navbar>
+        }
 
         </div>
     )

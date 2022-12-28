@@ -9,25 +9,46 @@ import RegisterPage from './pages/RegisterPage';
 import 'bootstrap/dist/css/bootstrap.css';
 import LogoutPage from './pages/LogoutPage'
 import Freedomistan from './pages/Freedomistan'
+import background from './background.png'
+import { SocialIcon } from 'react-social-icons';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <AuthProvider>
-          <Header/>
-          <Routes>
-            <Route element={<HomePage />} path="/" exact/>
-            <Route element={<PrivateRoute />}> 
-               <Route element={<Freedomistan />} path="/pledge/:id" />  
-            </Route>
-            <Route path="/login" element={<LoginPage />} /> 
-            <Route path="/register" element={<RegisterPage />} />  
-            <Route path="/logout" element={<LogoutPage />} />  
-          </Routes>
-        </AuthProvider>
-      </Router>
-    </div>
+    <html>
+      <div className="App">
+        <Router>
+          <AuthProvider>
+            <Header/>
+            <Routes>
+              <Route element={<HomePage />} path="/" exact/>
+              <Route element={<PrivateRoute />}> 
+                <Route element={<Freedomistan />} path="/pledge/:id" />  
+              </Route>
+              <Route path="/login" element={<LoginPage />} /> 
+              <Route path="/register" element={<RegisterPage />} />  
+              <Route path="/logout" element={<LogoutPage />} />  
+            </Routes>
+          </AuthProvider>
+        </Router>
+
+      </div>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <Container>
+        <Row>
+          <Col sm={6}></Col>
+          <Col sm={1}>
+            <SocialIcon style={{verticalAlign: 'middle'}} url="https://twitter.com/buyfreedomistan" fgColor='white' />
+          </Col>
+          <Col sm={5}></Col>
+        </Row>
+        </Container>
+    </html>
   );
 }
 

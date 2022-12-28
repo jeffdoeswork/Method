@@ -100,15 +100,15 @@ const Freedomistan = () => {
         <Form> 
         <Container className="justify-content-md-center w-75" fluid="md">
             <Form.Group className="mb-3" controlId="income">
-                <Form.Label>Twitter handle (or other social media handle/url)</Form.Label>
+                <Form.Label style={{ fontWeight: 'bold', color: 'white' }}>Twitter handle (or other social media handle/url)</Form.Label>
                 <Form.Control type="text" id="income" name="income" onChange={(e) => handelSocial(e, "income")} placeholder="Twitter handle" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="description">
-                <Form.Label>List things you want at Freedomistan! </Form.Label>
+                <Form.Label style={{ fontWeight: 'bold', color: 'white' }}>List things you want at Freedomistan! </Form.Label>
                 <Form.Control type="text" id="description" name="description" onChange={(e) => handelDescription(e, "description")} placeholder="rv park, gun range, thrift shop, etc." />
             </Form.Group>
-            <Form.Label>How much will you pay for Freedom? </Form.Label>
+            <Form.Label style={{ fontWeight: 'bold', color: 'white' }}>How much will you pay for Freedom? </Form.Label>
             <Form.Select aria-label="Default select example" id="plan" name="plan" placeholder="plan" onChange={(e) => handelPlan(e, "plan")}>
                 <option selected>{"One Night"}</option>
                 <option value="One Night">$100 One Night premium stay: Founders Membership </option>
@@ -127,15 +127,15 @@ const Freedomistan = () => {
     <Container className="justify-content-md-center w-75" fluid="md">
         <Form> 
             <Form.Group className="mb-3" controlId="income">
-                <Form.Label>Twitter handle (or other social media handle/url)</Form.Label>
+                <Form.Label style={{ fontWeight: 'bold', color: 'white' }}>Twitter handle (or other social media handle/url)</Form.Label>
                 <Form.Control type="text" id="income" name="income" onChange={(e) => handelSocial(e, "income")} placeholder={socialedit}/>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="description">
-                <Form.Label>List things you want at Freedomistan! </Form.Label>
+                <Form.Label style={{ fontWeight: 'bold', color: 'white' }}>List things you want at Freedomistan! </Form.Label>
                 <Form.Control type="text" id="description" name="description" onChange={(e) => handelDescription(e, "description")} placeholder={descriptionedit} />
             </Form.Group>
-            <Form.Label>How much will you pay for Freedom? </Form.Label>
+            <Form.Label style={{ fontWeight: 'bold', color: 'white' }}>How much will you pay for Freedom? </Form.Label>
             <Form.Select aria-label="Default select example"  id="plan" name="plan" placeholder="plan" onChange={(event) => handelPlan(event, "plan")}>
                 <option selected>{planedit}</option>
                 <option value="One Night">$100 One Night premium stay: Founders Membership </option>
