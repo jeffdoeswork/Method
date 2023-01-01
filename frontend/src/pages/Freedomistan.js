@@ -18,6 +18,7 @@ const Freedomistan = () => {
   let [socialedit, setSocialEdit] = useState([])
   let [descriptionedit, setDescriptionEdit] = useState([])
   let [planedit, setPlanEdit] = useState("One Night")
+  const url = process.env.REACT_APP_URL
 
   const navigate = useNavigate();
 
@@ -37,7 +38,7 @@ const Freedomistan = () => {
 
   let getTuts = async() => {
     console.log('THis is your ID: ',id)
-    let response2 = await fetch('http://127.0.0.1:8000/api/pledge/'+id, {
+    let response2 = await fetch(`http://${url}/api/pledge/${id}`, {
         method:'GET',})
 
         let data2 = await response2.json()
@@ -51,7 +52,7 @@ const Freedomistan = () => {
   let deletemovie = async (tut)=> {
     // e.preventDefault()
     console.log(tut.id)
-    let responsedel = await fetch('http://127.0.0.1:8000/api/tutorials/'+tut.id, { 
+    let responsedel = await fetch(`http://${url}/api/tutorials/${tut.id}`, { 
         method: 'PUT' })
     getTuts();
 }
@@ -62,7 +63,7 @@ const Freedomistan = () => {
 
   let makemovie = async (e)=> {
       e.preventDefault()
-      let response = await fetch('http://127.0.0.1:8000/api/tutorials/', {
+      let response = await fetch(`http://${url}/api/tutorials/`, {
           method:'POST',
           headers:{
               'Content-Type':'application/json'
@@ -79,7 +80,7 @@ const Freedomistan = () => {
   }
 
   let editpledge = async (tut)=> {
-    let response = await fetch('http://127.0.0.1:8000/api/tutorials/'+tutorial[0].id+"/", {
+    let response = await fetch(`http://${url}/api/tutorials/${tutorial[0].id}/`, {
         method:'PUT',
         body:JSON.stringify({
             'income':socialedit, 

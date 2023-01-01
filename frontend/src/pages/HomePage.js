@@ -14,9 +14,9 @@ const HomePage = () => {
     const [progress, setProgress] = useState(0)
     let {user} = useContext(AuthContext)
     const navigate = useNavigate();
-
+    const url = process.env.REACT_APP_URL
     let getCount = async() => {
-        let response2 = await fetch('http://127.0.0.1:8000/api/tutorials/total', {
+        let response2 = await fetch(`http://${url}/api/tutorials/total`, {
                 method:'GET',})
                 let data2 = await response2.json()
                 setProgress(data2)

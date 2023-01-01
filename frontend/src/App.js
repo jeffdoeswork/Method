@@ -16,6 +16,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function App() {
+  const url = process.env.REACT_APP_URL
+  console.log(`http://${ url }/api/token/`)
   return (
     <html>
       <div className="App">
@@ -23,7 +25,7 @@ function App() {
           <AuthProvider>
             <Header/>
             <Routes>
-              <Route element={<HomePage />} path="/" exact/>
+              <Route element={<HomePage url={url}/>} path="/" exact/>
               <Route element={<PrivateRoute />}> 
                 <Route element={<Freedomistan />} path="/pledge/:id" />  
               </Route>
@@ -41,9 +43,12 @@ function App() {
       <br></br>
       <Container>
         <Row>
-          <Col sm={6}></Col>
+          <Col sm={5}></Col>
           <Col sm={1}>
             <SocialIcon style={{verticalAlign: 'middle'}} url="https://twitter.com/buyfreedomistan" fgColor='white' />
+          </Col>
+          <Col sm={1}>
+            <SocialIcon style={{verticalAlign: 'middle'}} url="https://youtube.com/@FreedomistanCity" fgColor='white' />
           </Col>
           <Col sm={5}></Col>
         </Row>

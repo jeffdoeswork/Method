@@ -11,12 +11,13 @@ export const AuthProvider = ({children}) => {
     let [authTokens, setAuthTokens] = useState(()=> localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
     let [user, setUser] = useState(()=> localStorage.getItem('authTokens') ? jwt_decode(localStorage.getItem('authTokens')) : null)
     let [loading, setLoading] = useState(true)
+    const url = process.env.REACT_APP_URL
 
     const navigate = useNavigate();
 
     let loginUser = async (e )=> {
         e.preventDefault()
-        let response = await fetch('http://127.0.0.1:8000/api/token/', {
+        let response = await fetch(`http://${url}/api/token/`, {
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -45,8 +46,8 @@ export const AuthProvider = ({children}) => {
 
 
     let updateToken = async ()=> {
-
-        let response = await fetch('http://127.0.0.1:8000/api/token/refresh/', {
+        const url = process.env.REACT_APP_URL
+        let response = await fetch(`http://${url}/api/token/refresh/` , {
             method:'POST',
             headers:{
                 'Content-Type':'application/json'

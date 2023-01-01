@@ -9,13 +9,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const RegisterPage = () => {
+    const url = process.env.REACT_APP_URL
     const navigate = useNavigate();
 
     let registerUser = async (e )=> {
 
         if (e.target.password.value == e.target.passwordconfirm.value) {
             e.preventDefault()
-            let response = await fetch('http://127.0.0.1:8000/api/register', {
+            let response = await fetch(`http://${url}/api/register`, {
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'
