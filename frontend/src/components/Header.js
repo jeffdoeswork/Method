@@ -14,19 +14,16 @@ const Header = () => {
         {user ? 
             <Navbar>
                 <Nav className="container-fluid ">
-                <Nav.Item className="ml-auto">
+                <Nav.Item className="d-flex justify-content-start">
                     <Nav.Link className="link" ><Link className="link" to="/"><h4>Home</h4></Link>  </Nav.Link>
-                </Nav.Item>
-                        
-
-                <Nav.Item className="me-auto">
+                    <Nav.Link className="link" ><Link className="link" to="/socialtific"><h4>Socialtific</h4></Link>  </Nav.Link>
                     <Nav.Link className="link"> <Link className="link" to={"/pledge/"+user.user_id}> <h4>Join</h4></Link> </Nav.Link>
                 </Nav.Item>
 
-                <Nav.Item className="me-auto">
+                <Nav.Item className="d-flex justify-content-center">
                         {user && <h4>Hello {user.username}</h4>} 
                 </Nav.Item>
-                <Nav.Item className="ml-auto">
+                <Nav.Item className="d-flex justify-content-end">
                     <Nav.Link className="link"> <Link className="link" to="/logout"><h4>Logout</h4></Link>  </Nav.Link>
                 </Nav.Item>
 
@@ -35,19 +32,14 @@ const Header = () => {
         : 
         <Navbar>
             <Nav className="container-fluid ">
-                <Nav.Item className="me-auto">
+                <Nav.Item className="d-flex justify-content-start">
                     <Nav.Link className="link"> <Link className="link" to="/"> <h4>Home</h4></Link> </Nav.Link>
-                </Nav.Item>
-            </Nav>
+                        <Nav.Link className="link" ><Link className="link" to="/socialtific"><h4>Socialtific</h4></Link>  </Nav.Link>
+                </Nav.Item> 
 
-            <Nav className="me-auto">
-                <Nav.Item>
+                <Nav.Item className="d-flex justify-content-end">
                     <Nav.Link className="link"> <Link className="link" to="/login"><h4>Login</h4></Link> </Nav.Link>
-                </Nav.Item>
-            </Nav>
 
-            <Nav className="ms-auto">
-                <Nav.Item>
                     <Nav.Link className="link"> <Link className="link" to="/register"> <h4> Register</h4> </Link> </Nav.Link>
                 </Nav.Item>
             </Nav>

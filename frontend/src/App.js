@@ -14,6 +14,7 @@ import { SocialIcon } from 'react-social-icons';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Socialtific from './pages/Socialtific/Socialtific';
 
 function App() {
   const url = process.env.REACT_APP_URL
@@ -29,6 +30,7 @@ function App() {
               <Route element={<PrivateRoute />}> 
                 <Route element={<Freedomistan />} path="/pledge/:id" />  
               </Route>
+              <Route path="/socialtific" element={<Socialtific />} /> 
               <Route path="/login" element={<LoginPage />} /> 
               <Route path="/register" element={<RegisterPage />} />  
               <Route path="/logout" element={<LogoutPage />} />  
