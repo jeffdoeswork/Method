@@ -10,23 +10,23 @@ import profile_pic from './profile_pic.PNG';
 
 function Artifact(props) {
     const [getdata, setGetdata] = useState({
-        "created_at" : "today", "email_datas" : "Jeff@does.work", "datas" : "ThThe dog of wisof wisdom: If a ball is toThe dog of wisdom: If a ball is toThe dog of wisdom: If a ball is toThe dog dom: If a ball is toThe dog of wisdom: If a ball is toe dog of wisdom: If a ball is too big for your mouth, it is not yours", "id" : 1
+        "created_at" : "10/23/2022 8:15PM", "email_datas" : "Jeff@does.work", "datas" : "ThThe dog of wisof wisdom: If a ball is toThe dog of wisdom: If a ball is toThe dog of wisdom: If a ball is toThe dog dom: If a ball is toThe dog of wisdom: If a ball is toe dog of wisdom: If a ball is too big for your mouth, it is not yours", "id" : 1
     });
 
     return (
         
         <div>
-            <Container fluid="sm" className="data_artifact">
+            <Container className="data_artifact">
                 <div>
-                <Row >
-                    <Col sm={1}>
-                    <Image src={profile_pic} roundedCircle fluid />                   
+                <Row xs={3} sm={3}>
+                    <Col sm={2}>
+                    <Image src={profile_pic} roundedCircle fluid/>                   
                     </Col>
                     <Col sm={5}>
                         <p>{getdata.email_datas}</p>    
                         <p>{getdata.created_at}</p>                 
                     </Col>
-                    <Col sm={6} className="d-flex justify-content-end">
+                    <Col sm={5} className="d-flex justify-content-end">
                         <p>Link To Method / Meta Method</p>                     
                     </Col>
                 </Row>
@@ -49,6 +49,7 @@ function Artifact(props) {
                 </Row>
                 </div>
             </Container>
+
         </div>
   )
 };
