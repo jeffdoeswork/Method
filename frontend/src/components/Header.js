@@ -13,7 +13,7 @@ const Header = () => {
 
         {user ? 
             <Navbar>
-                <Nav className="container-fluid ">
+                <Nav className="container-fluid">
                 <Nav.Item className="d-flex justify-content-start">
                     <Nav.Link className="link" ><Link className="link" to="/"><h4>Home</h4></Link>  </Nav.Link>
                     <Nav.Link className="link" ><Link className="link" to="/socialtific"><h4>Socialtific</h4></Link>  </Nav.Link>
