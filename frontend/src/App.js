@@ -21,6 +21,12 @@ function App() {
   console.log(`http://${ url }/api/token/`)
   return (
     <html>
+      <Socialtific />
+      <br></br>
+      <Socialtific />
+      <Socialtific />
+      <Socialtific />
+
       <div className="App">
         <Router>
           <AuthProvider>

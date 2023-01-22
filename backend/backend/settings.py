@@ -30,7 +30,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 
-ALLOWED_HOSTS = [env('ALLOWED_HOSTS_1'), env('ALLOWED_HOSTS_2')]
+ALLOWED_HOSTS = [env('ALLOWED_HOSTS_1'), env('ALLOWED_HOSTS_2'), env('ALLOWED_HOSTS_3')]
 
 
 # Application definition

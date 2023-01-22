@@ -20,8 +20,8 @@ function Artifact(props) {
                             <Image src={profile_pic} roundedCircle fluid/>                   
                             </Col>
                             <Col sm={5}>
-                                <p>{props.data.email_datas}</p>    
-                                <p>{props.data.created_at}</p>                 
+                                <p>{props.data.user}</p>    
+                                <p>{props.data.income}</p>                 
                             </Col>
                             <Col sm={5} className="d-flex justify-content-end">
                                 <p>Link To Method / Meta Method</p>                     
@@ -29,7 +29,8 @@ function Artifact(props) {
                         </Row>
                         <Row>
                             <p key={props.data.id}>
-                            {props.data.datas}
+                            {props.data.plan} : {props.data.description}
+
                             </p>
                         </Row>
                         <Row>
@@ -46,7 +47,6 @@ function Artifact(props) {
                     </Container>
                 </Col>
             </Row>
-            <br></br>
         </div>
   )
 };
