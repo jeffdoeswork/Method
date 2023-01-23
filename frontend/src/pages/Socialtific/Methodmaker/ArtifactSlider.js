@@ -34,16 +34,16 @@ function ArtifactSlider(props) {
             )}
         </Carousel>
         <div className="d-flex justify-content-center mt-3">
-                {[1,2,3].map((number, i) => (
+            {props.getdata.map((item, i) => (
                 <button
-                    key={i}
-                    className={`btn btn-primary mx-1 ${index === i ? 'active' : ''}`}
-                    onClick={() => handleSelect(i)}
+                key={i}
+                className={`btn btn-primary mx-1 ${index === i ? 'active' : ''}`}
+                onClick={() => handleSelect(i)}
                 >
-                    {number}
+                {i+1}
                 </button>
-                ))}
-            </div>
+            ))}
+        </div>
         </div>
   )
 };

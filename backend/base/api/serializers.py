@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from base.models import Tutorial
+from base.models import Tutorial, ObservationArtifact, DataArtifact, HypothesisArtifact, ExperimentArtifact, ConclusionArtifact, Method
 from rest_framework.permissions import IsAuthenticated
 from django.db import models
 from django.contrib.auth.models import User
@@ -26,7 +26,7 @@ class UserSerializer(ModelSerializer):
         fields = '__all__'
 
 class TutorialSerializer(ModelSerializer):
- 
+
     class Meta:
         model = Tutorial
         fields = ('id',
@@ -35,3 +35,33 @@ class TutorialSerializer(ModelSerializer):
                   'description',
                   'validated',
                   'plan')
+
+class ObservatioSerializer(ModelSerializer):
+    class Meta:
+        model = ObservationArtifact
+        fields = '__all__'
+
+class DataSerializer(ModelSerializer):
+    class Meta:
+        model = DataArtifact
+        fields = '__all__'
+
+class HypothesisSerializer(ModelSerializer):
+    class Meta:
+        model = HypothesisArtifact
+        fields = '__all__'
+
+class ExperimentSerializer(ModelSerializer):
+    class Meta:
+        model = ExperimentArtifact
+        fields = '__all__'
+
+class ConclusionSerializer(ModelSerializer):
+    class Meta:
+        model = ConclusionArtifact
+        fields = '__all__'
+
+class MethodSerializer(ModelSerializer):
+    class Meta:
+        model = Method
+        fields = '__all__'

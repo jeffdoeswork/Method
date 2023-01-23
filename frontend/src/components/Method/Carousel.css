@@ -1,0 +1,40 @@
+.carousel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .carousel-items {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .carousel-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .carousel-item.active {
+    background-color: lightgrey;
+  }
+  
+  .carousel-item.data {
+    background-color: lightblue;
+  }
+  
+  .carousel-item.hypothesis {
+    background-color: mediumpurple;
+  }
+  
+  .carousel-item.experiment {
+    background-color: red;
+  }
+  
+  .carousel-item.conclusion {
+    background-color: lightgreen;
+  }

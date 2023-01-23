@@ -23,9 +23,6 @@ function App() {
     <html>
       <Socialtific />
       <br></br>
-      <Socialtific />
-      <Socialtific />
-      <Socialtific />
 
       <div className="App">
         <Router>
