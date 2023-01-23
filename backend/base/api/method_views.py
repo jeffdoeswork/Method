@@ -15,7 +15,7 @@ def observation_list(request):
         if income is not None:
             observations = observations.filter(income__icontains=income)
         
-        observations_serializer = ObservationSerializer(observations, many=True)
+        observations_serializer = ObservatioSerializer(observations, many=True)
         return JsonResponse(observations_serializer.data, safe=False)
         # 'safe=False' for objects serialization
  
