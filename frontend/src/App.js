@@ -21,9 +21,6 @@ function App() {
   console.log(`http://${ url }/api/token/`)
   return (
     <html>
-      <Socialtific />
-      <br></br>
-
       <div className="App">
         <Router>
           <AuthProvider>
@@ -42,7 +39,7 @@ function App() {
         </Router>
 
       </div>
-      <br></br>
+
       <br></br>
       <br></br>
       <br></br>
@@ -50,10 +47,10 @@ function App() {
         <Row>
           <Col sm={5}></Col>
           <Col sm={1}>
-            <SocialIcon style={{verticalAlign: 'middle'}} url="https://twitter.com/buyfreedomistan" fgColor='white' />
+            <SocialIcon style={{verticalAlign: 'middle'}} url="https://twitter.com/Socialtific" fgColor='white' />
           </Col>
           <Col sm={1}>
-            <SocialIcon style={{verticalAlign: 'middle'}} url="https://youtube.com/@FreedomistanCity" fgColor='white' />
+            <SocialIcon style={{verticalAlign: 'middle'}} url="https://www.youtube.com/@socialmethod" fgColor='white' />
           </Col>
           <Col sm={5}></Col>
         </Row>
