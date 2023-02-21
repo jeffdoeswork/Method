@@ -14,4 +14,4 @@ git clone https://github.com/jeffdoeswork/Method.git
 2. npm install
 3. npm start
 
-Good luck!
+Good luck, best of luck!!!
