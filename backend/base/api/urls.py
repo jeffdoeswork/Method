@@ -22,4 +22,6 @@ urlpatterns = [
     path('observations/', method_views.observation_list), 
     path('observations/<int:pk>/', method_views.observation_detail, name='observation_detail'), 
 
+    path('datas/', method_views.data_list), 
+    path('datas/<int:pk>/', method_views.data_detail, name='data_detail'), 
 ]
