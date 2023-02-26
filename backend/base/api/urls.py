@@ -24,4 +24,16 @@ urlpatterns = [
 
     path('datas/', method_views.data_list), 
     path('datas/<int:pk>/', method_views.data_detail, name='data_detail'), 
+
+    path('hypothesis/', method_views.hypothesis_list), 
+    path('hypothesis/<int:pk>/', method_views.hypothesis_detail, name='hypothesis_detail'), 
+
+    path('experiment/', method_views.experiment_list), 
+    path('experiment/<int:pk>/', method_views.experiment_detail, name='experiment_detail'), 
+
+    path('conclusion/', method_views.conclusion_list), 
+    path('conclusion/<int:pk>/', method_views.conclusion_detail, name='conclusion_detail'), 
+
+    path('method/', method_views.method_list), 
+    path('method/<int:pk>/', method_views.method_detail, name='method_detail'), 
 ]

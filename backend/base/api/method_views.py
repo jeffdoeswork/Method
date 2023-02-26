@@ -11,13 +11,8 @@ def observation_list(request):
     if request.method == 'GET':
         observations = ObservationArtifact.objects.all()
         
-        income = request.GET.get('income', None)
-        if income is not None:
-            observations = observations.filter(income__icontains=income)
-        
         observations_serializer = ObservatioSerializer(observations, many=True)
         return JsonResponse(observations_serializer.data, safe=False)
-        # 'safe=False' for objects serialization
  
     elif request.method == 'POST':
         observation_data = JSONParser().parse(request)
@@ -61,10 +56,6 @@ def data_list(request):
     if request.method == 'GET':
         datas = DataArtifact.objects.all()
         
-        income = request.GET.get('income', None)
-        if income is not None:
-            datas = datas.filter(income__icontains=income)
-        
         datas_serializer = DataSerializer(datas, many=True)
         return JsonResponse(datas_serializer.data, safe=False)
         # 'safe=False' for objects serialization
@@ -104,4 +95,185 @@ def data_detail(request, pk):
  
     elif request.method == 'DELETE': 
         dataz.delete() 
+        return JsonResponse({'message': 'data was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'POST', 'DELETE'])
+def hypothesis_list(request):
+    if request.method == 'GET':
+        hypothesis = HypothesisArtifact.objects.all()
+        
+        hypothesis_serializer = DataSerializer(hypothesis, many=True)
+        return JsonResponse(hypothesis_serializer.data, safe=False)
+ 
+    elif request.method == 'POST':
+        hypothesis_data = JSONParser().parse(request)
+        hypothesis_serializer = HypothesisArtifact(data=hypothesis_data)
+        print(hypothesis_serializer)
+        if hypothesis_serializer.is_valid():
+            hypothesis_serializer.save()
+            return JsonResponse(hypothesis_serializer.data, status=status.HTTP_201_CREATED) 
+        return JsonResponse(hypothesis_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        count = HypothesisArtifact.objects.all().delete()
+        return JsonResponse({'message': '{} hypothesis were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
+ 
+ 
+@api_view(['GET', 'PUT', 'DELETE'])
+def hypothesis_detail(request, pk):
+    try: 
+        hypothesis = HypothesisArtifact.objects.get(pk=pk) 
+    except HypothesisArtifact.DoesNotExist: 
+        return JsonResponse({'message': 'The Data does not exist'}, status=status.HTTP_404_NOT_FOUND) 
+ 
+    if request.method == 'GET': 
+        hypothesis_serializer = HypothesisSerializer(hypothesis) 
+        return JsonResponse(hypothesis_serializer.data) 
+ 
+    elif request.method == 'PUT': 
+        hypothesis_data = JSONParser().parse(request) 
+        hypothesis_serializer = HypothesisSerializer(hypothesis, data=hypothesis_data) 
+        if hypothesis_serializer.is_valid(): 
+            hypothesis_serializer.save() 
+            return JsonResponse(hypothesis_serializer.data) 
+        return JsonResponse(hypothesis_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+ 
+    elif request.method == 'DELETE': 
+        hypothesis.delete() 
+        return JsonResponse({'message': 'data was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'POST', 'DELETE'])
+def experiment_list(request):
+    if request.method == 'GET':
+        experiment = ExperimentArtifact.objects.all()
+        
+        experiment_serializer = ExperimentSerializer(experiment, many=True)
+        return JsonResponse(experiment_serializer.data, safe=False)
+ 
+    elif request.method == 'POST':
+        experiment_data = JSONParser().parse(request)
+        experiment_serializer = ExperimentArtifact(data=experiment_data)
+        print(experiment_serializer)
+        if experiment_serializer.is_valid():
+            experiment_serializer.save()
+            return JsonResponse(experiment_serializer.data, status=status.HTTP_201_CREATED) 
+        return JsonResponse(experiment_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        count = ExperimentArtifact.objects.all().delete()
+        return JsonResponse({'message': '{} experiment were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
+ 
+ 
+@api_view(['GET', 'PUT', 'DELETE'])
+def experiment_detail(request, pk):
+    try: 
+        experiment = ExperimentArtifact.objects.get(pk=pk) 
+    except ExperimentArtifact.DoesNotExist: 
+        return JsonResponse({'message': 'The Data does not exist'}, status=status.HTTP_404_NOT_FOUND) 
+ 
+    if request.method == 'GET': 
+        experiment_serializer = ExperimentSerializer(experiment) 
+        return JsonResponse(experiment_serializer.data) 
+ 
+    elif request.method == 'PUT': 
+        experiment_data = JSONParser().parse(request) 
+        experiment_serializer = ExperimentSerializer(experiment, data=experiment_data) 
+        if experiment_serializer.is_valid(): 
+            experiment_serializer.save() 
+            return JsonResponse(experiment_serializer.data) 
+        return JsonResponse(experiment_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+ 
+    elif request.method == 'DELETE': 
+        experiment.delete() 
+        return JsonResponse({'message': 'data was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'POST', 'DELETE'])
+def conclusion_list(request):
+    if request.method == 'GET':
+        conclusion = ConclusionArtifact.objects.all()
+        
+        conclusion_serializer = ConclusionSerializer(conclusion, many=True)
+        return JsonResponse(conclusion_serializer.data, safe=False)
+ 
+    elif request.method == 'POST':
+        conclusion_data = JSONParser().parse(request)
+        conclusion_serializer = ConclusionArtifact(data=conclusion_data)
+        print(conclusion_serializer)
+        if conclusion_serializer.is_valid():
+            conclusion_serializer.save()
+            return JsonResponse(conclusion_serializer.data, status=status.HTTP_201_CREATED) 
+        return JsonResponse(conclusion_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        count = ConclusionArtifact.objects.all().delete()
+        return JsonResponse({'message': '{} conclusion were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
+ 
+ 
+@api_view(['GET', 'PUT', 'DELETE'])
+def conclusion_detail(request, pk):
+    try: 
+        conclusion = ConclusionArtifact.objects.get(pk=pk) 
+    except ConclusionArtifact.DoesNotExist: 
+        return JsonResponse({'message': 'The Data does not exist'}, status=status.HTTP_404_NOT_FOUND) 
+ 
+    if request.method == 'GET': 
+        conclusion_serializer = DataSerializer(conclusion) 
+        return JsonResponse(conclusion_serializer.data) 
+ 
+    elif request.method == 'PUT': 
+        conclusion_data = JSONParser().parse(request) 
+        conclusion_serializer = DataSerializer(conclusion, data=conclusion_data) 
+        if conclusion_serializer.is_valid(): 
+            conclusion_serializer.save() 
+            return JsonResponse(conclusion_serializer.data) 
+        return JsonResponse(conclusion_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+ 
+    elif request.method == 'DELETE': 
+        conclusion.delete() 
+        return JsonResponse({'message': 'data was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'POST', 'DELETE'])
+def method_list(request):
+    if request.method == 'GET':
+        method = Method.objects.all()
+        
+        method_serializer = MethodSerializer(method, many=True)
+        return JsonResponse(method_serializer.data, safe=False)
+ 
+    elif request.method == 'POST':
+        method_data = JSONParser().parse(request)
+        method_serializer = Method(data=method_data)
+        print(method_serializer)
+        if method_serializer.is_valid():
+            method_serializer.save()
+            return JsonResponse(method_serializer.data, status=status.HTTP_201_CREATED) 
+        return JsonResponse(method_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        count = Method.objects.all().delete()
+        return JsonResponse({'message': '{} method were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
+ 
+ 
+@api_view(['GET', 'PUT', 'DELETE'])
+def method_detail(request, pk):
+    try: 
+        method = Method.objects.get(pk=pk) 
+    except Method.DoesNotExist: 
+        return JsonResponse({'message': 'The Method does not exist'}, status=status.HTTP_404_NOT_FOUND) 
+ 
+    if request.method == 'GET': 
+        method_serializer = MethodSerializer(method) 
+        return JsonResponse(method_serializer.data) 
+ 
+    elif request.method == 'PUT': 
+        method_data = JSONParser().parse(request) 
+        method_serializer = DataSerializer(method, data=method_data) 
+        if method_serializer.is_valid(): 
+            method_serializer.save() 
+            return JsonResponse(method_serializer.data) 
+        return JsonResponse(method_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+ 
+    elif request.method == 'DELETE': 
+        method_data.delete() 
         return JsonResponse({'message': 'data was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)

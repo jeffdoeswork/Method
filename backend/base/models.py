@@ -50,6 +50,7 @@ class Method(models.Model):
     title = models.CharField(max_length=75, blank=False, default='My Method')
     draft = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
+    observationartifact = models.ForeignKey(ObservationArtifact, on_delete=models.SET_NULL, blank=True, null=True)
     dataartifact = models.ForeignKey(DataArtifact, on_delete=models.SET_NULL, blank=True, null=True)
     hypothesisartifact = models.ForeignKey(HypothesisArtifact, on_delete=models.SET_NULL, blank=True, null=True)
     experimentartifact = models.ForeignKey(ExperimentArtifact, on_delete=models.SET_NULL, blank=True, null=True)
