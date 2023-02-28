@@ -8,13 +8,13 @@ import Header from './components/Header'
 import RegisterPage from './pages/RegisterPage';
 import 'bootstrap/dist/css/bootstrap.css';
 import LogoutPage from './pages/LogoutPage'
-import Freedomistan from './pages/Freedomistan'
+import ProfilePage from './pages/ProfilePage';
 import background from './background.png'
-import { SocialIcon } from 'react-social-icons';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Socialtific from './pages/Socialtific/Socialtific';
+import NewsFeed from './pages/NewsFeed';
 
 function App() {
   const url = process.env.REACT_APP_URL
@@ -26,10 +26,13 @@ function App() {
           <AuthProvider>
             <Header/>
             <Routes>
-              <Route element={<HomePage url={url}/>} path="/" exact/>
               <Route element={<PrivateRoute />}> 
-                <Route element={<Freedomistan />} path="/pledge/:id" />  
+                <Route element={<ProfilePage />} path="/profile/:id" />  
               </Route>
+              
+              <Route path="/about" element={<HomePage />} /> 
+              <Route path="/" element={<NewsFeed />} /> 
+
               <Route path="/socialtific" element={<Socialtific />} /> 
               <Route path="/login" element={<LoginPage />} /> 
               <Route path="/register" element={<RegisterPage />} />  
@@ -40,21 +43,6 @@ function App() {
 
       </div>
 
-      <br></br>
-      <br></br>
-      <br></br>
-      <Container>
-        <Row>
-          <Col sm={5}></Col>
-          <Col sm={1}>
-            <SocialIcon style={{verticalAlign: 'middle'}} url="https://twitter.com/Socialtific" fgColor='white' />
-          </Col>
-          <Col sm={1}>
-            <SocialIcon style={{verticalAlign: 'middle'}} url="https://www.youtube.com/@socialmethod" fgColor='white' />
-          </Col>
-          <Col sm={5}></Col>
-        </Row>
-        </Container>
     </html>
   );
 }

@@ -37,3 +37,4 @@ urlpatterns = [
     path('method/', method_views.method_list), 
     path('method/<int:pk>/', method_views.method_detail, name='method_detail'), 
 ]
+    

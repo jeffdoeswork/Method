@@ -15,13 +15,14 @@ const Header = () => {
             <Navbar>
                 <Nav className="container-fluid">
                 <Nav.Item className="d-flex justify-content-start">
-                    <Nav.Link className="link" ><Link className="link" to="/"><h4>Home</h4></Link>  </Nav.Link>
+                    <Nav.Link className="link" ><Link className="link" to="/about"><h4>About</h4></Link>  </Nav.Link>
                     <Nav.Link className="link" ><Link className="link" to="/socialtific"><h4>Socialtific</h4></Link>  </Nav.Link>
-                    <Nav.Link className="link"> <Link className="link" to={"/pledge/"+user.user_id}> <h4>Join</h4></Link> </Nav.Link>
+                    <Nav.Link className="link" ><Link className="link" to="/"><h4>Newsfeed</h4></Link>  </Nav.Link>
+
                 </Nav.Item>
 
                 <Nav.Item className="d-flex justify-content-center">
-                        {user && <h4>Hello {user.username}</h4>} 
+                    <Nav.Link className="link"> <Link className="link" to={"/profile/"+user.user_id}> <h4>Your Profile: {user.username}</h4></Link> </Nav.Link>
                 </Nav.Item>
                 <Nav.Item className="d-flex justify-content-end">
                     <Nav.Link className="link"> <Link className="link" to="/logout"><h4>Logout</h4></Link>  </Nav.Link>
@@ -33,8 +34,10 @@ const Header = () => {
         <Navbar>
             <Nav className="container-fluid ">
                 <Nav.Item className="d-flex justify-content-start">
-                    <Nav.Link className="link"> <Link className="link" to="/"> <h4>Home</h4></Link> </Nav.Link>
+                    <Nav.Link className="link" ><Link className="link" to="/about"><h4>About</h4></Link>  </Nav.Link>
                         <Nav.Link className="link" ><Link className="link" to="/socialtific"><h4>Socialtific</h4></Link>  </Nav.Link>
+                        <Nav.Link className="link" ><Link className="link" to="/"><h4>Newsfeed</h4></Link>  </Nav.Link>
+
                 </Nav.Item> 
 
                 <Nav.Item className="d-flex justify-content-end">
