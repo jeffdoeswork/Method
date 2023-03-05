@@ -34,7 +34,6 @@ urlpatterns = [
     path('conclusion/', method_views.conclusion_list), 
     path('conclusion/<int:pk>/', method_views.conclusion_detail, name='conclusion_detail'), 
 
-    path('method/', method_views.method_list), 
+    path('methods/', method_views.method_list), 
     path('method/<int:pk>/', method_views.method_detail, name='method_detail'), 
 ]
-    
