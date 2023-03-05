@@ -1,7 +1,9 @@
 from django.http.response import JsonResponse
+from django.core.serializers.json import DjangoJSONEncoder
 from rest_framework.parsers import JSONParser 
 from rest_framework import status
 from rest_framework.decorators import api_view
+import json
 
 from base.models import ObservationArtifact, DataArtifact, HypothesisArtifact, ExperimentArtifact, ConclusionArtifact, Method
 from .serializers import ObservatioSerializer, DataSerializer, HypothesisSerializer, ExperimentSerializer, ConclusionSerializer, MethodSerializer
@@ -277,3 +279,28 @@ def method_detail(request, pk):
     elif request.method == 'DELETE': 
         method_data.delete() 
         return JsonResponse({'message': 'data was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+
+class ArtifactEncoder(DjangoJSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, HypothesisArtifact):
+            return obj.description
+        if isinstance(obj, ExperimentArtifact):
+            return obj.description
+        return super().default(obj)
+
+@api_view(['GET'])
+def method_artifacts_list(request):
+    if request.method == 'GET':
+        method = Method.objects.all()
+        method_artifacts = Method.objects.select_related('hypothesisartifact', 'experimentartifact').all()
+
+        data = []
+        for method in method_artifacts:
+            data.append({
+                'title': method.title,
+                'hypothesis': method.hypothesisartifact,
+                'experiment': method.experimentartifact,
+            })
+        data_json = json.dumps(data, cls=ArtifactEncoder)
+
+    return JsonResponse(json.loads(data_json), safe=False)

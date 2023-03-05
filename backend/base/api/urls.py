@@ -35,5 +35,6 @@ urlpatterns = [
     path('conclusion/<int:pk>/', method_views.conclusion_detail, name='conclusion_detail'), 
 
     path('methods/', method_views.method_list), 
+    path('method_artifacts/', method_views.method_artifacts_list), 
     path('method/<int:pk>/', method_views.method_detail, name='method_detail'), 
 ]
