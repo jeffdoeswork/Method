@@ -18,7 +18,7 @@ def observation_list(request):
  
     elif request.method == 'POST':
         observation_data = JSONParser().parse(request)
-        observation_serializer = ObservationArtifact(data=observation_data)
+        observation_serializer = ObservatioSerializer(data=observation_data)
         print(observation_serializer)
         if observation_serializer.is_valid():
             observation_serializer.save()
@@ -270,14 +270,14 @@ def method_detail(request, pk):
  
     elif request.method == 'PUT': 
         method_data = JSONParser().parse(request) 
-        method_serializer = DataSerializer(method, data=method_data) 
+        method_serializer = MethodSerializer(method, data=method_data)
         if method_serializer.is_valid(): 
             method_serializer.save() 
             return JsonResponse(method_serializer.data) 
         return JsonResponse(method_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
  
     elif request.method == 'DELETE': 
-        method_data.delete() 
+        method.delete() 
         return JsonResponse({'message': 'data was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
 
 class ArtifactEncoder(DjangoJSONEncoder):
