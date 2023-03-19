@@ -57,9 +57,3 @@ class Method(models.Model):
     conclusionartifact = models.ForeignKey(ConclusionArtifact, on_delete=models.SET_NULL, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    def save(self, *args, **kwargs):
-        # Custom validation check to ensure at least one DataArtifact is associated with the Method
-        if not self.dataartifact.exists():
-            raise ValidationError("At least one DataArtifact is required for a Method")
-        super(Method, self).save(*args, **kwargs)
