@@ -51,9 +51,15 @@ class Method(models.Model):
     draft = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
     observationartifact = models.ForeignKey(ObservationArtifact, on_delete=models.SET_NULL, blank=True, null=True)
-    dataartifact = models.ForeignKey(DataArtifact, on_delete=models.SET_NULL, blank=True, null=True)
+    dataartifact = models.ManyToManyField(DataArtifact, blank=True)  # Change ForeignKey to ManyToManyField
     hypothesisartifact = models.ForeignKey(HypothesisArtifact, on_delete=models.SET_NULL, blank=True, null=True)
     experimentartifact = models.ForeignKey(ExperimentArtifact, on_delete=models.SET_NULL, blank=True, null=True)
     conclusionartifact = models.ForeignKey(ConclusionArtifact, on_delete=models.SET_NULL, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        # Custom validation check to ensure at least one DataArtifact is associated with the Method
+        if not self.dataartifact.exists():
+            raise ValidationError("At least one DataArtifact is required for a Method")
+        super(Method, self).save(*args, **kwargs)
