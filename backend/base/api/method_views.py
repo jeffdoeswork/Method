@@ -282,9 +282,15 @@ def method_detail(request, pk):
 
 class ArtifactEncoder(DjangoJSONEncoder):
     def default(self, obj):
-        if isinstance(obj, HypothesisArtifact):
+        if isinstance(obj, ObservationArtifact):
             return obj.description
-        if isinstance(obj, ExperimentArtifact):
+        elif isinstance(obj, HypothesisArtifact):
+            return obj.description
+        elif isinstance(obj, ExperimentArtifact):
+            return obj.description
+        elif isinstance(obj, ConclusionArtifact):
+            return obj.description
+        elif isinstance(obj, DataArtifact):
             return obj.description
         return super().default(obj)
 
@@ -292,14 +298,25 @@ class ArtifactEncoder(DjangoJSONEncoder):
 def method_artifacts_list(request):
     if request.method == 'GET':
         method = Method.objects.all()
-        method_artifacts = Method.objects.select_related('hypothesisartifact', 'experimentartifact').all()
+        method_artifacts = Method.objects.select_related(
+            'observationartifact',
+            # 'dataartifact',
+            'hypothesisartifact',
+             'experimentartifact',
+             'conclusionartifact'
+             ).prefetch_related('dataartifact').all()
 
         data = []
         for method in method_artifacts:
+            data_artifacts = [artifact.description for artifact in method.dataartifact.all()]
             data.append({
                 'title': method.title,
+                'created_at' : method.created_at,
+                'observation': method.observationartifact,
+                'datas': data_artifacts, 
                 'hypothesis': method.hypothesisartifact,
                 'experiment': method.experimentartifact,
+                'conclusion' : method.conclusionartifact
             })
         data_json = json.dumps(data, cls=ArtifactEncoder)
 
