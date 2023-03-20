@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from .serializers import RegisterSerializer, UserSerializer, TutorialSerializer
+from ..serializers import RegisterSerializer, UserSerializer, TutorialSerializer
 from base.models import Tutorial
 
 from django.shortcuts import render

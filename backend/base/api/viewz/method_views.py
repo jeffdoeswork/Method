@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view
 import json
 
 from base.models import ObservationArtifact, DataArtifact, HypothesisArtifact, ExperimentArtifact, ConclusionArtifact, Method
-from .serializers import ObservatioSerializer, DataSerializer, HypothesisSerializer, ExperimentSerializer, ConclusionSerializer, MethodSerializer
+from ..serializers import ObservatioSerializer, DataSerializer, HypothesisSerializer, ExperimentSerializer, ConclusionSerializer, MethodSerializer
 
 @api_view(['GET', 'POST', 'DELETE'])
 def observation_list(request):

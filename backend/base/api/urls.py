@@ -1,7 +1,7 @@
 from django.urls import path, include, re_path
-from . import views
-from . import method_views
-from .views import MyTokenObtainPairView, RegisterApi
+from .viewz import views
+from .viewz import method_views
+from .viewz.views import MyTokenObtainPairView, RegisterApi
 
 from rest_framework_simplejwt.views import (
     TokenRefreshView,
