@@ -4,6 +4,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework import status
 from rest_framework.decorators import api_view
 import json
+from django.contrib.auth.models import User
 
 from base.models import ObservationArtifact, DataArtifact, HypothesisArtifact, ExperimentArtifact, ConclusionArtifact, Method
 from ..serializers import ObservatioSerializer, DataSerializer, HypothesisSerializer, ExperimentSerializer, ConclusionSerializer, MethodSerializer
@@ -282,6 +283,8 @@ def method_detail(request, pk):
 
 class ArtifactEncoder(DjangoJSONEncoder):
     def default(self, obj):
+        if isinstance(obj, User):
+            return obj.username
         if isinstance(obj, ObservationArtifact):
             return obj.description
         elif isinstance(obj, HypothesisArtifact):
@@ -311,6 +314,7 @@ def method_artifacts_list(request):
             data_artifacts = [artifact.description for artifact in method.dataartifact.all()]
             data.append({
                 'title': method.title,
+                'username': method.user,
                 'created_at' : method.created_at,
                 'observation': method.observationartifact,
                 'datas': data_artifacts, 

@@ -14,7 +14,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Socialtific from './pages/Socialtific/Socialtific';
-import NewsFeed from './pages/NewsFeed';
+import NewsFeed from './pages/Feeds/NewsFeed';
 
 function App() {
   const url = process.env.REACT_APP_URL
