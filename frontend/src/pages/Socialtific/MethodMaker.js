@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Artifact from './Artifacts/Artifact';
 import ArtifactSlider from './Methodmaker/ArtifactSlider';
 
-const Socialtific = () => {
+const MethodMaker = () => {
   const url = process.env.REACT_APP_URL
 
   const [getdata, setGetdata] = useState([
@@ -10,7 +10,7 @@ const Socialtific = () => {
 ]);
 
 let getTuts = async() => {
-  let response2 = await fetch(`http://${url}/api/tutorials`, {
+  let response2 = await fetch(`http://${url}/api/datas`, {
       method:'GET',})
 
       let data2 = await response2.json()
@@ -29,4 +29,4 @@ useEffect(()=> {
   )
 }
 
-export default Socialtific
+export default MethodMaker

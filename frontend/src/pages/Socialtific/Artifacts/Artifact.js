@@ -10,6 +10,11 @@ import profile_pic from './profile_pic.PNG';
 
 function Artifact(props) {
 
+    const formatDate = (dateString) => {
+        const [dateWithoutMilliseconds] = dateString.split('.');
+        return dateWithoutMilliseconds;
+      };
+
     return (
         <div>
             <Row className="d-flex justify-content-center">
@@ -20,8 +25,9 @@ function Artifact(props) {
                             <Image src={profile_pic} roundedCircle fluid/>                   
                             </Col>
                             <Col sm={5}>
-                                <p>{props.data.user}</p>    
-                                <p>{props.data.income}</p>                 
+                                <p>{props.data.user}</p>  
+
+                                {formatDate(props.data.created_at)}   
                             </Col>
                             <Col sm={5} className="d-flex justify-content-end">
                                 <p>Link To Method / Meta Method</p>                     
@@ -29,7 +35,8 @@ function Artifact(props) {
                         </Row>
                         <Row>
                             <p key={props.data.id}>
-                            {props.data.plan} : {props.data.description}
+                            <br></br>
+                            {props.data.description}
 
                             </p>
                         </Row>
