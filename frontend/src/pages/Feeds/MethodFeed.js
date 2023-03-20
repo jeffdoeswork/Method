@@ -23,7 +23,7 @@ const MethodFeed = () => {
     <div>
         <h2> Method Feed </h2>
         {allmethods.map(method => (
-            <div>
+            <div key={method.id} >
                 <p>Title: {method.title}</p>
                 <p>Username: {method.username}</p>
                 <p>Created at: {method.created_at}</p>

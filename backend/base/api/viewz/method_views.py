@@ -313,6 +313,7 @@ def method_artifacts_list(request):
         for method in method_artifacts:
             data_artifacts = [artifact.description for artifact in method.dataartifact.all()]
             data.append({
+                'id' : method.id,
                 'title': method.title,
                 'username': method.user,
                 'created_at' : method.created_at,
