@@ -16,20 +16,6 @@ const CreateArtifact = () => {
     setValue(event.target.value);
   }
 
-  let makemovie = async (e)=> {
-    e.preventDefault()
-    let response = await fetch(`http://${url}/api/tutorials/`, {
-        method:'POST',
-        headers:{
-            'Content-Type':'application/json'
-        },
-        body:JSON.stringify({
-            'income':'socialedit', 
-        })
-        
-    })
-}
-
   return (
     <div>
 

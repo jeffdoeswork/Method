@@ -14,16 +14,11 @@ urlpatterns = [
     path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    path('tutorials/', views.tutorial_list), 
-    path('pledge/<int:pk>/', views.user_pledge),
-    path('tutorials/<int:pk>/', views.tutorial_detail, name='tutorial_detail'), 
-    path('tutorials/total', views.tutorial_count),
-
     path('observations/', method_views.observation_list), 
     path('observations/<int:pk>/', method_views.observation_detail, name='observation_detail'), 
 
-    path('datas/', method_views.data_list), 
-    path('datas/<int:pk>/', method_views.data_detail, name='data_detail'), 
+    path('datas/<int:pk>', method_views.DataDetail.as_view()),
+    path('datas', method_views.DataList.as_view()),
 
     path('hypothesis/', method_views.hypothesis_list), 
     path('hypothesis/<int:pk>/', method_views.hypothesis_detail, name='hypothesis_detail'), 

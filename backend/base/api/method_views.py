@@ -1,7 +1,7 @@
 from django.http.response import JsonResponse
 from django.core.serializers.json import DjangoJSONEncoder
 from rest_framework.parsers import JSONParser 
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.decorators import api_view
 import json
 
@@ -76,29 +76,15 @@ def data_list(request):
         return JsonResponse({'message': '{} data were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
  
  
-@api_view(['GET', 'PUT', 'DELETE'])
-def data_detail(request, pk):
-    try: 
-        dataz = DataArtifact.objects.get(pk=pk) 
-    except DataArtifact.DoesNotExist: 
-        return JsonResponse({'message': 'The Data does not exist'}, status=status.HTTP_404_NOT_FOUND) 
- 
-    if request.method == 'GET': 
-        data_serializer = DataSerializer(dataz) 
-        return JsonResponse(data_serializer.data) 
- 
-    elif request.method == 'PUT': 
-        data_data = JSONParser().parse(request) 
-        data_serializer = DataSerializer(dataz, data=data_data) 
-        if data_serializer.is_valid(): 
-            data_serializer.save() 
-            return JsonResponse(data_serializer.data) 
-        return JsonResponse(data_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
- 
-    elif request.method == 'DELETE': 
-        dataz.delete() 
-        return JsonResponse({'message': 'data was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
 
+class DataDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = DataArtifact.objects.all()
+    serializer_class = DataSerializer
+
+class DataList(generics.ListCreateAPIView):
+    queryset = DataArtifact.objects.all()
+    serializer_class = DataSerializer
+    
 @api_view(['GET', 'POST', 'DELETE'])
 def hypothesis_list(request):
     if request.method == 'GET':

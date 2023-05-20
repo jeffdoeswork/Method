@@ -7,8 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from .serializers import RegisterSerializer, UserSerializer, TutorialSerializer
-from base.models import Tutorial
+from .serializers import RegisterSerializer, UserSerializer
 
 from django.shortcuts import render
 
@@ -50,79 +49,3 @@ def getRoutes(request):
         '/api/token/refresh',
     ]
     return Response(routes)
-
-@api_view(['GET', 'POST', 'DELETE'])
-def tutorial_list(request):
-    if request.method == 'GET':
-        tutorials = Tutorial.objects.all()
-        
-        income = request.GET.get('income', None)
-        if income is not None:
-            tutorials = tutorials.filter(income__icontains=income)
-        
-        tutorials_serializer = TutorialSerializer(tutorials, many=True)
-        return JsonResponse(tutorials_serializer.data, safe=False)
-        # 'safe=False' for objects serialization
- 
-    elif request.method == 'POST':
-        tutorial_data = JSONParser().parse(request)
-        tutorial_serializer = TutorialSerializer(data=tutorial_data)
-        print(tutorial_serializer)
-        if tutorial_serializer.is_valid():
-            tutorial_serializer.save()
-            return JsonResponse(tutorial_serializer.data, status=status.HTTP_201_CREATED) 
-        return JsonResponse(tutorial_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-    elif request.method == 'DELETE':
-        count = Tutorial.objects.all().delete()
-        return JsonResponse({'message': '{} Tutorials were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
- 
- 
-@api_view(['GET', 'PUT', 'DELETE'])
-def tutorial_detail(request, pk):
-    try: 
-        tutorial = Tutorial.objects.get(pk=pk) 
-    except Tutorial.DoesNotExist: 
-        return JsonResponse({'message': 'The tutorial does not exist'}, status=status.HTTP_404_NOT_FOUND) 
- 
-    if request.method == 'GET': 
-        tutorial_serializer = TutorialSerializer(tutorial) 
-        return JsonResponse(tutorial_serializer.data) 
- 
-    elif request.method == 'PUT': 
-        tutorial_data = JSONParser().parse(request) 
-        tutorial_serializer = TutorialSerializer(tutorial, data=tutorial_data) 
-        if tutorial_serializer.is_valid(): 
-            tutorial_serializer.save() 
-            return JsonResponse(tutorial_serializer.data) 
-        return JsonResponse(tutorial_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
- 
-    elif request.method == 'DELETE': 
-        tutorial.delete() 
-        return JsonResponse({'message': 'Tutorial was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
-    
-        
-@api_view(['GET'])
-def tutorial_list_published(request):
-    tutorials = Tutorial.objects.filter(published=True)
-        
-    if request.method == 'GET': 
-        tutorials_serializer = TutorialSerializer(tutorials, many=True)
-        return JsonResponse(tutorials_serializer.data, safe=False)
-
-@api_view(['GET'])
-def user_pledge(request, pk):
-    tutorials = Tutorial.objects.filter(user=pk)
-        
-    if request.method == 'GET': 
-        tutorials_serializer = TutorialSerializer(tutorials, many=True)
-        return JsonResponse(tutorials_serializer.data, safe=False)
-
-@api_view(['GET'])
-def tutorial_count(request):
-    one_night = Tutorial.objects.filter(plan='One Night').count()
-    weekend = Tutorial.objects.filter(plan='Weekend').count()
-    invester = Tutorial.objects.filter(plan='Invester').count()
-    progress = ((one_night*100) + (weekend * 500) + (invester * 5000))
-    if request.method == 'GET': 
-        return JsonResponse(progress, safe=False)

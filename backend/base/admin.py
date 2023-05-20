@@ -2,8 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 # from .models import Tutorial, ObservationArtifact, HypothesisArtifact, ExperimentArtifact, ConclusionArtifact, Method
-from .models import Tutorial, ObservationArtifact, DataArtifact, HypothesisArtifact, ExperimentArtifact, ConclusionArtifact, Method
-admin.site.register(Tutorial)
+from .models import ObservationArtifact, DataArtifact, HypothesisArtifact, ExperimentArtifact, ConclusionArtifact, Method
 admin.site.register(ObservationArtifact)
 admin.site.register(DataArtifact)
 admin.site.register(HypothesisArtifact)

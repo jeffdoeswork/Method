@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'backend',  # ensure this is added
     'base.apps.BaseConfig',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
@@ -124,8 +124,8 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-if env('DATABASES') =='sqlight3':
+print(env('DATABASES'))
+if env('DATABASES') =='sqlite3':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -133,7 +133,13 @@ if env('DATABASES') =='sqlight3':
         }
     }
 else:
-    'no db'
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

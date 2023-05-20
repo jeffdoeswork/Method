@@ -44,3 +44,9 @@
   border-color: #ffd700 !important;
   color: #ffffff !important;
 }
+
+.custom-btn.selected.borrowed {
+  background-color: #c4a706 !important; /* Adjust this to your desired color */
+  border-color: #c4a706 !important;
+  color: #ffffff !important;
+}

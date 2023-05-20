@@ -17,6 +17,7 @@ function ArtifactSlider(props) {
     const [index, setIndex] = useState(0);
     const [makeartifact, setMakeArtifact] = useState(true);
     const [borrowedIndex, setBorrowedIndex] = useState(null); // keep track of borrowed item
+    const [idMap, setIdMap] = useState({});
 
     const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -26,6 +27,15 @@ function ArtifactSlider(props) {
         setBorrowedIndex(index); // set the current selected item as borrowed
     };
 
+    useEffect(() => {
+        const newIdMap = props.getdata.reduce((map, item, index) => {
+            map[item.id] = index + 1;  // replace item.id with the property that holds your original ID
+            return map;
+        }, {});
+        setIdMap(newIdMap);
+    }, [props.getdata]);
+    
+    
     return ( 
         <div>
         <Container>
@@ -38,12 +48,13 @@ function ArtifactSlider(props) {
             activeIndex={index} 
             onSelect={handleSelect}>
 
-                {props.getdata.map((data) => (
-                    <Carousel.Item>
-                        <Artifact data={data} artifact_className={props.artifact_className}/>
-                    </Carousel.Item>
-                    )
-                )}
+            {props.getdata.map((data, i) => (
+                <Carousel.Item>
+                    <Artifact data={data} artifact_className={props.artifact_className} idMap={idMap[data.id]} />
+                </Carousel.Item>
+            ))}
+
+
             </Carousel>
             <Row>
             <div className="d-flex justify-content-center mt-3">
