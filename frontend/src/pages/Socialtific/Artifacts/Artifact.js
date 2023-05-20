@@ -17,15 +17,15 @@ function Artifact(props) {
         <div>   
 <Row className="d-flex justify-content-center">
     <Col xs={12} sm={8} md={7} xl={6}>
-        <Container className="data_artifact">
+        <Container className={props.artifact_className}>
             <Row>
-                <Col xs={3} md={2}>
+                <Col xs={3} md={2} lg={2}>
                     <Image src={profile_pic} roundedCircle style={{ width: "80px", height: "80px" }} />
                 </Col>
-                <Col xs={3} md={2}>
+                <Col xs={3} md={2} lg={2}>
                     <p className="d-flex justify-content-start">{props.data.user.username}</p>
                 </Col>
-                <Col xs={6} md={8}>
+                <Col xs={6} md={8} lg={8}>
                     <p className="d-flex justify-content-end"> {props.data.created_at}</p>
                 </Col>
             </Row>

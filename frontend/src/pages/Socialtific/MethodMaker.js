@@ -5,26 +5,35 @@ import ArtifactSlider from './Methodmaker/ArtifactSlider';
 const Socialtific = () => {
   const url = process.env.REACT_APP_URL
 
-  const [getdata, setGetdata] = useState([
-    
-]);
+  const [getdata, setGetdata] = useState([]);
+  const [getobs, setGetobs] = useState([]);
 
-let getTuts = async() => {
+
+
+let getDatas = async() => {
   let response2 = await fetch(`http://${url}/api/datas`, {
       method:'GET',})
-
       let data2 = await response2.json()
       setGetdata(data2)
 }
+let getObs = async() => {
+  let response2 = await fetch(`http://${url}/api/observations`, {
+      method:'GET',})
+      let data2 = await response2.json()
+      setGetobs(data2)
+}
 
 useEffect(()=> {
-  getTuts();
-  console.log("my arrtifactss", getdata)
+  getDatas();
+  getObs();
 }, [])
 
   return (
     <div>
-      <ArtifactSlider getdata={getdata}/>
+      <ArtifactSlider getdata={getdata} artifact_className="data_artifact" />
+      <br></br>
+      <ArtifactSlider getdata={getobs} artifact_className="obs_artifact" />
+
     </div>
   )
 }
