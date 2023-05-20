@@ -10,7 +10,7 @@ const Socialtific = () => {
 ]);
 
 let getTuts = async() => {
-  let response2 = await fetch(`http://${url}/api/tutorials`, {
+  let response2 = await fetch(`http://${url}/api/datas`, {
       method:'GET',})
 
       let data2 = await response2.json()

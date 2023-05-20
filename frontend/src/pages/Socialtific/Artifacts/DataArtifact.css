@@ -7,9 +7,11 @@
     border: 3px solid #0c30fa;
     border-radius: 15px;
     font-size: 1em;
-    /* padding: 4px; */
-  }
+}
 
+.description-row {
+    grid-row: 1 / span 3;
+}
 
   .data_artifact_smol {
     margin: auto;

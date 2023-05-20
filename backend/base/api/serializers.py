@@ -20,6 +20,12 @@ class RegisterSerializer(ModelSerializer):
         return user
 
 # User serializer
+
+class UsernameSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id','username',)
+
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
@@ -36,32 +42,39 @@ class TutorialSerializer(ModelSerializer):
                   'validated',
                   'plan')
 
-class ObservatioSerializer(ModelSerializer):
+class ObservationSerializer(ModelSerializer):
+    user = UsernameSerializer(read_only=True)
     class Meta:
         model = ObservationArtifact
         fields = '__all__'
 
+
 class DataSerializer(ModelSerializer):
+    user = UsernameSerializer(read_only=True)
     class Meta:
         model = DataArtifact
         fields = '__all__'
 
 class HypothesisSerializer(ModelSerializer):
+    user = UsernameSerializer(read_only=True)
     class Meta:
         model = HypothesisArtifact
         fields = '__all__'
 
 class ExperimentSerializer(ModelSerializer):
+    user = UsernameSerializer(read_only=True)
     class Meta:
         model = ExperimentArtifact
         fields = '__all__'
 
 class ConclusionSerializer(ModelSerializer):
+    user = UsernameSerializer(read_only=True)
     class Meta:
         model = ConclusionArtifact
         fields = '__all__'
 
 class MethodSerializer(ModelSerializer):
+    user = UsernameSerializer(read_only=True)
     class Meta:
         model = Method
         fields = '__all__'

@@ -16,7 +16,7 @@ const Header = () => {
                 <Nav className="container-fluid">
                 <Nav.Item className="d-flex justify-content-start">
                     <Nav.Link className="link" ><Link className="link" to="/about"><h4>About</h4></Link>  </Nav.Link>
-                    <Nav.Link className="link" ><Link className="link" to="/socialtific"><h4>Socialtific</h4></Link>  </Nav.Link>
+                    <Nav.Link className="link" ><Link className="link" to="/socialtific"><h4>Method Maker</h4></Link>  </Nav.Link>
                     <Nav.Link className="link" ><Link className="link" to="/"><h4>Newsfeed</h4></Link>  </Nav.Link>
 
                 </Nav.Item>
@@ -35,7 +35,7 @@ const Header = () => {
             <Nav className="container-fluid ">
                 <Nav.Item className="d-flex justify-content-start">
                     <Nav.Link className="link" ><Link className="link" to="/about"><h4>About</h4></Link>  </Nav.Link>
-                        <Nav.Link className="link" ><Link className="link" to="/socialtific"><h4>Socialtific</h4></Link>  </Nav.Link>
+                        <Nav.Link className="link" ><Link className="link" to="/socialtific"><h4>Method Maker</h4></Link>  </Nav.Link>
                         <Nav.Link className="link" ><Link className="link" to="/"><h4>Newsfeed</h4></Link>  </Nav.Link>
 
                 </Nav.Item> 

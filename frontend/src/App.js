@@ -13,7 +13,7 @@ import background from './background.png'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Socialtific from './pages/Socialtific/Socialtific';
+import Methodmaker from './pages/Socialtific/MethodMaker';
 import NewsFeed from './pages/NewsFeed';
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
               <Route path="/about" element={<HomePage />} /> 
               <Route path="/" element={<NewsFeed />} /> 
 
-              <Route path="/socialtific" element={<Socialtific />} /> 
+              <Route path="/socialtific" element={<Methodmaker />} /> 
               <Route path="/login" element={<LoginPage />} /> 
               <Route path="/register" element={<RegisterPage />} />  
               <Route path="/logout" element={<LogoutPage />} />  

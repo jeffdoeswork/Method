@@ -6,19 +6,19 @@ from rest_framework.decorators import api_view
 import json
 
 from base.models import ObservationArtifact, DataArtifact, HypothesisArtifact, ExperimentArtifact, ConclusionArtifact, Method
-from .serializers import ObservatioSerializer, DataSerializer, HypothesisSerializer, ExperimentSerializer, ConclusionSerializer, MethodSerializer
+from .serializers import ObservationSerializer, DataSerializer, HypothesisSerializer, ExperimentSerializer, ConclusionSerializer, MethodSerializer
 
 @api_view(['GET', 'POST', 'DELETE'])
 def observation_list(request):
     if request.method == 'GET':
         observations = ObservationArtifact.objects.all()
         
-        observations_serializer = ObservatioSerializer(observations, many=True)
+        observations_serializer = ObservationSerializer(observations, many=True)
         return JsonResponse(observations_serializer.data, safe=False)
  
     elif request.method == 'POST':
         observation_data = JSONParser().parse(request)
-        observation_serializer = ObservatioSerializer(data=observation_data)
+        observation_serializer = ObservationSerializer(data=observation_data)
         print(observation_serializer)
         if observation_serializer.is_valid():
             observation_serializer.save()
@@ -38,12 +38,12 @@ def observation_detail(request, pk):
         return JsonResponse({'message': 'The observation does not exist'}, status=status.HTTP_404_NOT_FOUND) 
  
     if request.method == 'GET': 
-        observation_serializer = ObservatioSerializer(observation) 
+        observation_serializer = ObservationSerializer(observation) 
         return JsonResponse(observation_serializer.data) 
  
     elif request.method == 'PUT': 
         observation_data = JSONParser().parse(request) 
-        observation_serializer = ObservatioSerializer(observation, data=observation_data) 
+        observation_serializer = ObservationSerializer(observation, data=observation_data) 
         if observation_serializer.is_valid(): 
             observation_serializer.save() 
             return JsonResponse(observation_serializer.data) 
