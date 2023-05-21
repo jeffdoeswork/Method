@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const NewsFeed = () => {
-    const [methodfeed, setMethodFeed] = useState(true);
+    const [methodfeed, setMethodFeed] = useState(false);
     const [allmethods, setAllMethods] = useState([ ]);
     const url = process.env.REACT_APP_URL
 
@@ -25,28 +25,42 @@ const NewsFeed = () => {
 
     return (
         <div>
+            <br></br>
             <Container className="justify-content-md-center w-75" fluid="md">
 
             {methodfeed ?
             <div>
+                <Row>
+                <Col xs={2} md={3} lg={4}>
+                        <h1> Method Feed</h1>
+                </Col>
+                <Col xs={2} md={3} lg={4}>
+
                 <Button onClick={() => setMethodFeed(false)}>
                    Go to Artifacts
                 </Button>
-            <h2> Method Feed </h2>
-            {allmethods.map(method => (
-                <div>
-                <p>Title: {method.title}</p>
-                <p>Username: {method.user}</p>
-                </div>
-            ))}
-
+                    {allmethods.map(method => (
+                        <div>
+                        <p>Title: {method.title}</p>
+                        <p>Username: {method.user}</p>
+                        </div>
+                    ))}
+                    </Col>
+            </Row>
             </div>
             :
             <div>
-                <Button onClick={() => setMethodFeed(true)}>
-                   Go to Methods
-                </Button>
-                <h2> Artifact Feed</h2>
+                <Row>
+                    <Col xs={2} md={3} lg={4}>
+                        <h1> Artifact Feed</h1>
+                    </Col>
+
+                    <Col xs={2} md={3} lg={4}>
+                        <Button onClick={() => setMethodFeed(true)}>
+                            Go to Methods
+                        </Button>
+                    </Col>
+                </Row>
             </div>
             }
 

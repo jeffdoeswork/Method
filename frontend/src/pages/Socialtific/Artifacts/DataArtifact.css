@@ -1,5 +1,5 @@
 
-.data_artifact {
+.Data {
     /*padding: 15px 0;
     padding-top: 25px;
     width: 600px; 
@@ -10,25 +10,25 @@
     font-size: 1em;
 }
 
-.obs_artifact {
+.Observation {
   border: 4px solid #06b1cf;
   border-radius: 15px;
   font-size: 1em;
 }
 
-.hypo_artifact {
+.Hypothesis {
   border: 4px solid #db08ca;
   border-radius: 15px;
   font-size: 1em;
 }
 
-.exp_artifact {
+.Experiment {
   border: 4px solid #c90505;
   border-radius: 15px;
   font-size: 1em;
 }
 
-.con_artifact {
+.Conclusion {
   border: 4px solid #01a81d;
   border-radius: 15px;
   font-size: 1em;

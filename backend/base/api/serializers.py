@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from base.models import ObservationArtifact, DataArtifact, HypothesisArtifact, ExperimentArtifact, ConclusionArtifact, Method
 from rest_framework.permissions import IsAuthenticated
 from django.db import models
@@ -31,8 +31,21 @@ class UserSerializer(ModelSerializer):
         model = User
         fields = '__all__'
 
+class MethodSerializer(ModelSerializer):
+    user = UsernameSerializer(read_only=True)
+    class Meta:
+        model = Method
+        fields = '__all__'
+
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
+
 class ObservationSerializer(ModelSerializer):
     user = UsernameSerializer(read_only=True)
+    type = SerializerMethodField()
+
+    def get_type(self, obj):
+        return "Observation"
+
     class Meta:
         model = ObservationArtifact
         fields = '__all__'
@@ -40,30 +53,47 @@ class ObservationSerializer(ModelSerializer):
 
 class DataSerializer(ModelSerializer):
     user = UsernameSerializer(read_only=True)
+    type = SerializerMethodField()
+
+    def get_type(self, obj):
+        return "Data"
+
     class Meta:
         model = DataArtifact
         fields = '__all__'
 
+
 class HypothesisSerializer(ModelSerializer):
     user = UsernameSerializer(read_only=True)
+    type = SerializerMethodField()
+
+    def get_type(self, obj):
+        return "Hypothesis"
+
     class Meta:
         model = HypothesisArtifact
         fields = '__all__'
 
+
 class ExperimentSerializer(ModelSerializer):
     user = UsernameSerializer(read_only=True)
+    type = SerializerMethodField()
+
+    def get_type(self, obj):
+        return "Experiment"
+
     class Meta:
         model = ExperimentArtifact
         fields = '__all__'
 
+
 class ConclusionSerializer(ModelSerializer):
     user = UsernameSerializer(read_only=True)
+    type = SerializerMethodField()
+
+    def get_type(self, obj):
+        return "Conclusion"
+
     class Meta:
         model = ConclusionArtifact
-        fields = '__all__'
-
-class MethodSerializer(ModelSerializer):
-    user = UsernameSerializer(read_only=True)
-    class Meta:
-        model = Method
         fields = '__all__'

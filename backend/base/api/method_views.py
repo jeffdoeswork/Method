@@ -4,9 +4,48 @@ from rest_framework.parsers import JSONParser
 from rest_framework import status, generics
 from rest_framework.decorators import api_view
 import json
+from django.db.models import QuerySet
 
 from base.models import ObservationArtifact, DataArtifact, HypothesisArtifact, ExperimentArtifact, ConclusionArtifact, Method
 from .serializers import ObservationSerializer, DataSerializer, HypothesisSerializer, ExperimentSerializer, ConclusionSerializer, MethodSerializer
+
+from rest_framework.response import Response
+from operator import attrgetter
+
+class ArtifactList(generics.ListCreateAPIView):
+    def get_serializer_class(self):
+        return ObservationSerializer  # or any other serializer
+    def get_queryset(self):
+        return QuerySet()
+    
+    def get(self, request):
+        observations = ObservationArtifact.objects.all()
+        data_artifacts = DataArtifact.objects.all()
+        hypothesis_artifacts = HypothesisArtifact.objects.all()
+        experiment_artifacts = ExperimentArtifact.objects.all()
+        conclusion_artifacts = ConclusionArtifact.objects.all()
+
+        combined = sorted(
+            list(observations) + list(data_artifacts) + list(hypothesis_artifacts) + list(experiment_artifacts) + list(conclusion_artifacts),
+            key=attrgetter('created_at'),
+            reverse=True  # Use reverse=True to sort from newest to oldest.
+        )
+
+        result = []
+
+        for artifact in combined:
+            if isinstance(artifact, ObservationArtifact):
+                result.append(ObservationSerializer(artifact).data)
+            elif isinstance(artifact, DataArtifact):
+                result.append(DataSerializer(artifact).data)
+            elif isinstance(artifact, HypothesisArtifact):
+                result.append(HypothesisSerializer(artifact).data)
+            elif isinstance(artifact, ExperimentArtifact):
+                result.append(ExperimentSerializer(artifact).data)
+            elif isinstance(artifact, ConclusionArtifact):
+                result.append(ConclusionSerializer(artifact).data)
+
+        return Response(result)
 
 
 class ObservationDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -24,7 +63,6 @@ class DataDetail(generics.RetrieveUpdateDestroyAPIView):
 class DataList(generics.ListCreateAPIView):
     queryset = DataArtifact.objects.all()
     serializer_class = DataSerializer
-
 
 class HypothesisDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = HypothesisArtifact.objects.all()

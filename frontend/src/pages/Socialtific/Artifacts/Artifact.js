@@ -12,14 +12,14 @@ import profile_pic from './profile_pic.PNG';
 {/* <Image src={profile_pic} roundedCircle style={{ width: "80px", height: "80px" }} />                  */}
 
 function Artifact(props) {
-    const { data, artifact_className, idMap } = props;
+    const { data,  idMap } = props;
 
     return (
         <div>   
 <Row className="d-flex justify-content-center">
     
     <Col xs={12} sm={12} md={10} xl={9}>
-        <Container className={props.artifact_className}>
+        <Container className={props.data.type}>
             <Row>
                 <Col xs={2} md={2} lg={2}>
                     <Image src={profile_pic} roundedCircle style={{ width: "80px", height: "80px" }} />

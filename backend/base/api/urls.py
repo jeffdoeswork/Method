@@ -32,4 +32,7 @@ urlpatterns = [
     path('methods/', method_views.method_list), 
     path('method_artifacts/', method_views.method_artifacts_list), 
     path('method/<int:pk>/', method_views.method_detail, name='method_detail'), 
+
+    path('artifacts/', method_views.ArtifactList.as_view()), 
+
 ]

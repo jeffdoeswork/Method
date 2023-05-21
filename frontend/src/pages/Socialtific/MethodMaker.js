@@ -61,7 +61,7 @@ useEffect(()=> {
           <h2 className='obs_text' style={{ paddingLeft: '25px' }}> Observations:  </h2>
         </Col>
         <Col xs={12} sm={12} md={9} xl={11}>
-          <ArtifactSlider getdata={getobs} artifact_className="obs_artifact" />
+          <ArtifactSlider getdata={getobs} />
         </Col>
       </Row>
       <br></br>
@@ -70,7 +70,7 @@ useEffect(()=> {
           <h2 className='data_text ' style={{ paddingLeft: '25px' }}> Datas:  </h2>
         </Col>
         <Col xs={12} sm={12} md={9} xl={11}>
-        <ArtifactSlider getdata={getdata} artifact_className="data_artifact" />
+        <ArtifactSlider getdata={getdata} />
         </Col>
       </Row>
       <br></br>
@@ -79,7 +79,7 @@ useEffect(()=> {
           <h2 className='hypo_text ' style={{ paddingLeft: '25px' }}> Hypotheses:  </h2>
         </Col>
         <Col xs={12} sm={12} md={9} xl={11}>
-        <ArtifactSlider getdata={gethypo} artifact_className="hypo_artifact" />
+        <ArtifactSlider getdata={gethypo} />
         </Col>
       </Row>
       <br></br>
@@ -88,7 +88,7 @@ useEffect(()=> {
           <h2 className='exp_text ' style={{ paddingLeft: '25px' }}> Experiments:  </h2>
         </Col>
         <Col xs={12} sm={12} md={9} xl={11}>
-        <ArtifactSlider getdata={getexp} artifact_className="exp_artifact" />
+        <ArtifactSlider getdata={getexp}/>
         </Col>
       </Row>
       <br></br>
@@ -97,7 +97,7 @@ useEffect(()=> {
           <h2 className='con_text ' style={{ paddingLeft: '25px' }}> Conclusions:  </h2>
         </Col>
         <Col xs={12} sm={12} md={9} xl={11}>
-        <ArtifactSlider getdata={getcon} artifact_className="con_artifact" />
+        <ArtifactSlider getdata={getcon}/>
         </Col>
       </Row>      
       <br></br>
