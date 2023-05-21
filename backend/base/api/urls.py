@@ -14,20 +14,20 @@ urlpatterns = [
     path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    path('observations/', method_views.observation_list), 
-    path('observations/<int:pk>/', method_views.observation_detail, name='observation_detail'), 
+    path('observations/', method_views.ObservationList.as_view()), 
+    path('observations/<int:pk>/', method_views.ObservationDetail.as_view()), 
 
     path('datas/<int:pk>', method_views.DataDetail.as_view()),
     path('datas', method_views.DataList.as_view()),
 
-    path('hypothesis/', method_views.hypothesis_list), 
-    path('hypothesis/<int:pk>/', method_views.hypothesis_detail, name='hypothesis_detail'), 
+    path('hypothesis/', method_views.HypothesisList.as_view()), 
+    path('hypothesis/<int:pk>/', method_views.HypothesisDetail.as_view()), 
 
-    path('experiment/', method_views.experiment_list), 
-    path('experiment/<int:pk>/', method_views.experiment_detail, name='experiment_detail'), 
+    path('experiments/', method_views.ExperimentList.as_view()), 
+    path('experiments/<int:pk>/', method_views.ExperimentDetail.as_view()), 
 
-    path('conclusion/', method_views.conclusion_list), 
-    path('conclusion/<int:pk>/', method_views.conclusion_detail, name='conclusion_detail'), 
+    path('conclusions/', method_views.ConclusionList.as_view()), 
+    path('conclusions/<int:pk>/', method_views.ConclusionDetail.as_view()), 
 
     path('methods/', method_views.method_list), 
     path('method_artifacts/', method_views.method_artifacts_list), 

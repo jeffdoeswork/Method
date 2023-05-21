@@ -49,9 +49,9 @@ function ArtifactSlider(props) {
             onSelect={handleSelect}>
 
             {props.getdata.map((data, i) => (
-                <Carousel.Item>
-                    <Artifact data={data} artifact_className={props.artifact_className} idMap={idMap[data.id]} />
-                </Carousel.Item>
+                    <Carousel.Item>
+                        <Artifact data={data} artifact_className={props.artifact_className} idMap={idMap[data.id]} />
+                    </Carousel.Item>
             ))}
 
 

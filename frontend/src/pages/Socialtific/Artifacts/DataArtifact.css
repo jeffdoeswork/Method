@@ -5,13 +5,31 @@
     width: 600px; 
 
     height: 162px;*/
-    border: 4px solid #0c30fa;
+    border: 4px solid #0928d6;
     border-radius: 15px;
     font-size: 1em;
 }
 
 .obs_artifact {
-  border: px solid #06b1cf;
+  border: 4px solid #06b1cf;
+  border-radius: 15px;
+  font-size: 1em;
+}
+
+.hypo_artifact {
+  border: 4px solid #db08ca;
+  border-radius: 15px;
+  font-size: 1em;
+}
+
+.exp_artifact {
+  border: 4px solid #c90505;
+  border-radius: 15px;
+  font-size: 1em;
+}
+
+.con_artifact {
+  border: 4px solid #01a81d;
   border-radius: 15px;
   font-size: 1em;
 }

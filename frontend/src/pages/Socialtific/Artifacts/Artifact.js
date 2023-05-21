@@ -35,7 +35,7 @@ function Artifact(props) {
             <Col xs={4} md={2} className="d-flex flex-column justify-content-end">
             <h3> #{ idMap }</h3>
             </Col>
-                <Col xs={8} className="maxHeight">
+                <Col xs={8} className="maxHeight" style={{ marginTop: '-25px' }}>
                     <p>{props.data.description}</p>
                 </Col>
                 <Col xs={2} md={2} className="d-flex flex-column justify-content-end align-items-end">
