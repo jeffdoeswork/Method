@@ -1,15 +1,14 @@
-.linkText .nav-link .link .Link{ color: darkgray ; }
+.navbar-fixed {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 200px;  /* Set this as you prefer */
+    overflow-y: auto; /* for scrolling if items exceed the height */
+    background-color: #f8f9fa; /* Your preferred color */
+    padding: 1rem 0; 
+}
 
 .link {
-    text-decoration: none;
-    all: unset;
-    color: black;
+    /* Add your preferred styles here */
 }
-
-.link:hover {
-    color: rgb(236, 238, 245);
-}
-
-.navbar {
-    background-color: rgb(75, 197, 96);
-  }

@@ -1,0 +1,28 @@
+.vertical-nav {
+    min-width: 17rem;
+    width: 17rem;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s;
+  }
+  
+  .vertical-nav .nav-link {
+    color: #333;
+    border: none;
+    border-radius: 0;
+  }
+  
+  .vertical-nav .nav-link.active {
+    color: white;
+    background: #007bff;
+  }
+  
+  .vertical-nav .nav-link:hover {
+    color: white;
+    background: #007bff;
+  }
+  
+  

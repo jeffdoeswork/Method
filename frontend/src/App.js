@@ -24,25 +24,27 @@ function App() {
       <div className="App">
         <Router>
           <AuthProvider>
-            <Header/>
-            <Routes>
-              <Route element={<PrivateRoute />}> 
-                <Route element={<ProfilePage />} path="/profile/:id" />  
-              </Route>
-              
-              <Route path="/about" element={<HomePage />} /> 
-              <Route path="/" element={<NewsFeed />} /> 
+            <div style={{ display: 'flex' }}>
+              <Header/>
+              <div style={{ width: '100%', marginLeft: '200px' }}> 
+                <Routes>
+                  <Route element={<PrivateRoute />}> 
+                    <Route element={<ProfilePage />} path="/profile/:id" />  
+                  </Route>
 
-              <Route path="/socialtific" element={<Methodmaker />} /> 
-              <Route path="/login" element={<LoginPage />} /> 
-              <Route path="/register" element={<RegisterPage />} />  
-              <Route path="/logout" element={<LogoutPage />} />  
-            </Routes>
+                  <Route path="/about" element={<HomePage />} /> 
+                  <Route path="/" element={<NewsFeed />} /> 
+
+                  <Route path="/socialtific" element={<Methodmaker />} /> 
+                  <Route path="/login" element={<LoginPage />} /> 
+                  <Route path="/register" element={<RegisterPage />} />  
+                  <Route path="/logout" element={<LogoutPage />} />  
+                </Routes>
+              </div>
+            </div>
           </AuthProvider>
         </Router>
-
       </div>
-
     </html>
   );
 }
