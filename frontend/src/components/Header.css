@@ -5,12 +5,20 @@
     left: 0;
     width: 200px;  /* Set this as you prefer */
     overflow-y: auto; /* for scrolling if items exceed the height */
-    background-color: #f8f9fa; /* Your preferred color */
+    background-color: #43b3fd; /* Your preferred color */
     padding: 1rem 0; 
 }
 
+.linkText .nav-link .link .Link{ color: darkgray ; }
+
 .link {
-    /* Add your preferred styles here */
+    text-decoration: none;
+    all: unset;
+    color: black;
+}
+
+.link:hover {
+    color: rgb(236, 238, 245);
 }
     
 
