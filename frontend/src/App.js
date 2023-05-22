@@ -16,9 +16,16 @@ import Col from 'react-bootstrap/Col';
 import Methodmaker from './pages/Socialtific/MethodMaker';
 import NewsFeed from './pages/NewsFeed';
 
+import { useMediaQuery } from 'react-responsive';
+
 function App() {
+  const isSmallScreen = useMediaQuery({ query: '(max-width: 576px)' })
+  
   const url = process.env.REACT_APP_URL
   console.log(`http://${ url }/api/token/`)
+
+  const contentStyle = isSmallScreen ? { width: '100%' } : { width: '100%', marginLeft: '200px' }
+
   return (
     <html>
       <div className="App">
@@ -26,7 +33,7 @@ function App() {
           <AuthProvider>
             <div style={{ display: 'flex' }}>
               <Header/>
-              <div style={{ width: '100%', marginLeft: '200px' }}> 
+              <div style={contentStyle}> 
                 <Routes>
                   <Route element={<PrivateRoute />}> 
                     <Route element={<ProfilePage />} path="/profile/:id" />  
@@ -35,7 +42,7 @@ function App() {
                   <Route path="/about" element={<HomePage />} /> 
                   <Route path="/" element={<NewsFeed />} /> 
 
-                  <Route path="/socialtific" element={<Methodmaker />} /> 
+                  <Route path="/method-maker" element={<Methodmaker />} /> 
                   <Route path="/login" element={<LoginPage />} /> 
                   <Route path="/register" element={<RegisterPage />} />  
                   <Route path="/logout" element={<LogoutPage />} />  
