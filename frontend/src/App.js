@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import PrivateRoute from './utils/PrivateRoute'
 import { AuthProvider } from './context/AuthContext'
 import HomePage from './pages/HomePage'
-import LoginPage from './pages/LoginPage'
+import LoginPage from './pages/UserAuth/LoginPage'
 import Header from './components/Header'
-import RegisterPage from './pages/RegisterPage';
+import RegisterPage from './pages/UserAuth/RegisterPage';
 import 'bootstrap/dist/css/bootstrap.css';
-import LogoutPage from './pages/LogoutPage'
+import LogoutPage from './pages/UserAuth/LogoutPage'
 import ProfilePage from './pages/ProfilePage';
 import background from './background.png'
 import Container from 'react-bootstrap/Container';
@@ -15,15 +15,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Methodmaker from './pages/Socialtific/MethodMaker';
 import NewsFeed from './pages/NewsFeed';
+import Explore from './pages/Explore';
 
 import { useMediaQuery } from 'react-responsive';
 
 function App() {
   const isSmallScreen = useMediaQuery({ query: '(max-width: 576px)' })
   
-  const url = process.env.REACT_APP_URL
-  console.log(`http://${ url }/api/token/`)
-
   const contentStyle = isSmallScreen ? { width: '100%' } : { width: '100%', marginLeft: '200px' }
 
   return (
@@ -41,7 +39,7 @@ function App() {
 
                   <Route path="/about" element={<HomePage />} /> 
                   <Route path="/" element={<NewsFeed />} /> 
-
+                  <Route path="/explore" element={<Explore />} /> 
                   <Route path="/method-maker" element={<Methodmaker />} /> 
                   <Route path="/login" element={<LoginPage />} /> 
                   <Route path="/register" element={<RegisterPage />} />  

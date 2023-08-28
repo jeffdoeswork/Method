@@ -1,31 +1,25 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
-class ObservationArtifact(models.Model):
+class CommonArtifact(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
     description = models.CharField(max_length=500, blank=False, default='')
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        abstract = True
 
-class DataArtifact(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
-    description = models.CharField(max_length=500, blank=False, default='')
-    created_at = models.DateTimeField(auto_now_add=True)
+class ObservationArtifact(CommonArtifact):
+    pass
+class DataArtifact(CommonArtifact):
+    pass
+class HypothesisArtifact(CommonArtifact):
+    pass
+class ExperimentArtifact(CommonArtifact):
+    pass
+class ConclusionArtifact(CommonArtifact):
+    pass
 
-class HypothesisArtifact(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
-    description = models.CharField(max_length=500, blank=False, default='')
-    created_at = models.DateTimeField(auto_now_add=True)
-
-class ExperimentArtifact(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
-    description = models.CharField(max_length=500, blank=False, default='')
-    created_at = models.DateTimeField(auto_now_add=True)
-
-class ConclusionArtifact(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
-    description = models.CharField(max_length=500, blank=False, default='')
-    created_at = models.DateTimeField(auto_now_add=True)
 
 class Method(models.Model):
     title = models.CharField(max_length=75, blank=False, default='My Method')
@@ -38,3 +32,29 @@ class Method(models.Model):
     conclusionartifact = models.ForeignKey(ConclusionArtifact, on_delete=models.SET_NULL, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+# class ObservationArtifact(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+#     description = models.CharField(max_length=500, blank=False, default='')
+#     created_at = models.DateTimeField(auto_now_add=True)
+
+# class DataArtifact(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+#     description = models.CharField(max_length=500, blank=False, default='')
+#     created_at = models.DateTimeField(auto_now_add=True)
+
+# class HypothesisArtifact(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+#     description = models.CharField(max_length=500, blank=False, default='')
+#     created_at = models.DateTimeField(auto_now_add=True)
+
+# class ExperimentArtifact(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+#     description = models.CharField(max_length=500, blank=False, default='')
+#     created_at = models.DateTimeField(auto_now_add=True)
+
+# class ConclusionArtifact(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+#     description = models.CharField(max_length=500, blank=False, default='')
+#     created_at = models.DateTimeField(auto_now_add=True)
+

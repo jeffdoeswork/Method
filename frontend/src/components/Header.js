@@ -27,6 +27,9 @@ const Header = () => {
                             <Nav.Link className="link"><Link className="link" to="/about">About</Link></Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
+                            <Nav.Link className="link"><Link className="link" to="/explore">Explore</Link></Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
                             <Nav.Link className="link"><Link className="link" to="/method-maker">Method Maker</Link></Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
@@ -43,6 +46,9 @@ const Header = () => {
                     <Nav className="flex-column">
                         <Nav.Item>
                             <Nav.Link className="link"><Link className="link" to="/about">About</Link></Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link className="link"><Link className="link" to="/explore">Explore</Link></Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
                             <Nav.Link className="link"><Link className="link" to="/method-maker">Method Maker</Link></Nav.Link>
@@ -66,6 +72,9 @@ const Header = () => {
                         <Nav.Link className="link"><Link className="link" to="/about">About</Link></Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
+                        <Nav.Link className="link"><Link className="link" to="/explore">Explore</Link></Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
                         <Nav.Link className="link"><Link className="link" to="/method-maker">Method Maker</Link></Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
@@ -82,6 +91,9 @@ const Header = () => {
                 <Nav className="flex-column">
                     <Nav.Item>
                         <Nav.Link className="link"><Link className="link" to="/about">About</Link></Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link className="link"><Link className="link" to="/explore">Explore</Link></Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                         <Nav.Link className="link"><Link className="link" to="/method-maker">Method Maker</Link></Nav.Link>

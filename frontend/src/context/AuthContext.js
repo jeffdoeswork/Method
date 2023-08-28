@@ -16,25 +16,35 @@ export const AuthProvider = ({children}) => {
     const navigate = useNavigate();
 
     let loginUser = async (e )=> {
-        e.preventDefault()
-        let response = await fetch(`http://${url}/api/token/`, {
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify({'username':e.target.username.value, 'password':e.target.password.value})
-        })
-        let data = await response.json()
-
-        if(response.status === 200){
-            setAuthTokens(data)
-            setUser(jwt_decode(data.access))
-            localStorage.setItem('authTokens', JSON.stringify(data))
-            navigate('/')
-        }else{
-            alert('Something went wrong! Maybe wrong PW or Username?')
+        e.preventDefault();
+        try {
+            let response = await fetch(`http://${url}/api/token/`, {
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({'username':e.target.username.value, 'password':e.target.password.value})
+            });
+            let data = await response.json();
+            
+            if(response.status === 200){
+                setAuthTokens(data);
+                setUser(jwt_decode(data.access));
+                localStorage.setItem('authTokens', JSON.stringify(data));
+                navigate('/');
+            }else{
+                // Handle different types of errors
+                if (data.detail) {
+                    alert(`Error: ${data.detail}`);
+                } else {
+                    alert('Something went wrong!');
+                }
+            }
+        } catch (error) {
+            // Handle fetch errors
+            alert('An error occurred while communicating with the API');
         }
-    }
+    };
 
 
     let logoutUser = () => {

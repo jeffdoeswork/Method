@@ -3,6 +3,7 @@ from rest_framework import generics, permissions, mixins
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.throttling import UserRateThrottle
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -19,6 +20,7 @@ from rest_framework.decorators import api_view
 #Register API
 class RegisterApi(generics.GenericAPIView):
     serializer_class = RegisterSerializer
+    throttle_classes = [UserRateThrottle]
     def post(self, request, *args,  **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)

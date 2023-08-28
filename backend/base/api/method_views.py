@@ -6,46 +6,38 @@ from rest_framework.decorators import api_view
 import json
 from django.db.models import QuerySet
 
-from base.models import ObservationArtifact, DataArtifact, HypothesisArtifact, ExperimentArtifact, ConclusionArtifact, Method
+from base.models import CommonArtifact, ObservationArtifact, DataArtifact, HypothesisArtifact, ExperimentArtifact, ConclusionArtifact, Method
 from .serializers import ObservationSerializer, DataSerializer, HypothesisSerializer, ExperimentSerializer, ConclusionSerializer, MethodSerializer
 
 from rest_framework.response import Response
 from operator import attrgetter
 
-class ArtifactList(generics.ListCreateAPIView):
-    def get_serializer_class(self):
-        return ObservationSerializer  # or any other serializer
-    def get_queryset(self):
-        return QuerySet()
-    
-    def get(self, request):
-        observations = ObservationArtifact.objects.all()
-        data_artifacts = DataArtifact.objects.all()
-        hypothesis_artifacts = HypothesisArtifact.objects.all()
-        experiment_artifacts = ExperimentArtifact.objects.all()
-        conclusion_artifacts = ConclusionArtifact.objects.all()
+from operator import attrgetter
+from rest_framework import generics
+from rest_framework.response import Response
 
-        combined = sorted(
-            list(observations) + list(data_artifacts) + list(hypothesis_artifacts) + list(experiment_artifacts) + list(conclusion_artifacts),
-            key=attrgetter('created_at'),
-            reverse=True  # Use reverse=True to sort from newest to oldest.
+class ArtifactList(generics.ListCreateAPIView):
+    serializer_class = ObservationSerializer  # Set this if you need to, or use get_serializer_class
+
+    def get_queryset(self):
+        # Override if you have a specific QuerySet to return
+        return ObservationArtifact.objects.all()
+
+    def get(self, request):
+        # This will pull in all objects that are subclasses of CommonArtifact
+        common_artifacts = CommonArtifact.objects.all().select_subclasses()
+        
+        # If you still want to sort them by created_at
+        sorted_common_artifacts = sorted(
+            common_artifacts, 
+            key=attrgetter('created_at'), 
+            reverse=True
         )
 
-        result = []
-
-        for artifact in combined:
-            if isinstance(artifact, ObservationArtifact):
-                result.append(ObservationSerializer(artifact).data)
-            elif isinstance(artifact, DataArtifact):
-                result.append(DataSerializer(artifact).data)
-            elif isinstance(artifact, HypothesisArtifact):
-                result.append(HypothesisSerializer(artifact).data)
-            elif isinstance(artifact, ExperimentArtifact):
-                result.append(ExperimentSerializer(artifact).data)
-            elif isinstance(artifact, ConclusionArtifact):
-                result.append(ConclusionSerializer(artifact).data)
-
+        result = [self.get_serializer(instance).data for instance in sorted_common_artifacts]
+        
         return Response(result)
+
 
 
 class ObservationDetail(generics.RetrieveUpdateDestroyAPIView):

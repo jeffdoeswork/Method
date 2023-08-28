@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import AuthContext from '../context/AuthContext'
+import AuthContext from './../../context/AuthContext'
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
